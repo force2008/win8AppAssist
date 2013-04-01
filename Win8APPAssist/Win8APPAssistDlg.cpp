@@ -75,7 +75,7 @@ BOOL CWin8APPAssistDlg::OnInitDialog()
 	path = new TCHAR[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH,path);
 	SetDlgItemText(IDC_EDIT1, L"test");
-	SetDlgItemText(IDC_EDIT2, L"G:\\Users\\qijun\\Documents\\Visual Studio 2012\\tmp");
+	SetDlgItemText(IDC_EDIT2, L"D:\\win8app");
 	// Add "About..." menu item to system menu.
 
 	// IDM_ABOUTBOX must be in the system command range.
@@ -217,7 +217,7 @@ void CWin8APPAssistDlg::OnBnClickedOk()
 		MessageBox(L"please input project name!", L"Hello, Windows!");
 		return;
 	}
-	
+
 	if(*pPathname=='\0'){
 		MessageBox(L"please input project path!", L"Hello, Windows!");
 		return;
@@ -251,37 +251,47 @@ void CWin8APPAssistDlg::OnBnClickedOk()
 BOOL CWin8APPAssistDlg::createProject(CString name,CString targetPath){
 	CString webappPath(path);
 	webappPath +="\\webapp";
-	CopyFile(webappPath+L"\\webapp.sln",targetPath+"\\"+name+".sln",FALSE);
+	targetPath = targetPath+"\\"+ name;
+	if (GetFileAttributes(targetPath) == INVALID_FILE_ATTRIBUTES) {
+		CreateDirectory(targetPath,NULL);
+	}
+	CopyFile(webappPath+L"\\webapp.sln",targetPath+".sln",FALSE);
 	copyFolderAllFiles(webappPath+L"\\webapp",targetPath);
+	CFile::Rename(targetPath+"\\webapp.jsproj",targetPath+"\\"+name+".jsproj");
 	return TRUE;
 }
 
 void CWin8APPAssistDlg::copyFolderAllFiles(CString csSourceFolder, CString csNewFolder)
 {
-    CFileFind f;
-    BOOL bFind=f.FindFile(csSourceFolder+"\\*.*");
+	CFileFind f;
+	BOOL bFind=f.FindFile(csSourceFolder+"\\*.*");
+	BOOL newFolderFind;
 	CString tmp = csNewFolder + "\\";
 	LPCTSTR p =  tmp.GetBuffer();
 	//memset(charNewFolder,0,sizeof(charNewFolder));
 	//strcpy(charNewFolder,tmp.GetBuffer(0)) ;
 	//memcpy(charNewFolder,(LPCSTR)tmp,tmp.GetAllocLength());
-    while(bFind)
-    {
-        bFind = f.FindNextFile();
-        TRACE(_T("%s\r\n"),f.GetFileName());
+	while(bFind)
+	{
+		bFind = f.FindNextFile();
+		TRACE(_T("%s\r\n"),f.GetFileName());
 
-        if(f.IsDots()) continue;
-        if(f.IsDirectory())
-        {
-          _mkdir((char*)p);
-          copyFolderAllFiles(csSourceFolder+"\\"+f.GetFileName(),csNewFolder+"\\"+f.GetFileName());
-        }
-        ::SetFileAttributes(csSourceFolder+"\\"+f.GetFileName(),FILE_ATTRIBUTE_NORMAL);
-        ::AfxGetApp()->DoWaitCursor(1);
+		if(f.IsDots()) continue;
+		if(f.IsDirectory())
+		{
+			_mkdir((char*)p);
+			copyFolderAllFiles(csSourceFolder+"\\"+f.GetFileName(),csNewFolder+"\\"+f.GetFileName());
+		}
+		::SetFileAttributes(csSourceFolder+"\\"+f.GetFileName(),FILE_ATTRIBUTE_NORMAL);
+		::AfxGetApp()->DoWaitCursor(1);
 		CString source = csSourceFolder+"\\"+f.GetFileName();
+		
+		if (GetFileAttributes(csNewFolder) == INVALID_FILE_ATTRIBUTES) {
+		  CreateDirectory(csNewFolder,NULL);
+		}
 		CString dest = csNewFolder+"\\"+f.GetFileName();
-        ::CopyFile(source,dest,FALSE);
-        ::AfxGetApp()->DoWaitCursor(-1);
+		::CopyFile(source,dest,FALSE);
+		::AfxGetApp()->DoWaitCursor(-1);
 
-    }
+	}
 }
