@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>22b6f678-23e1-4267-bfdd-aeac0e7bcc1a</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="libwbxml">
+      <UniqueIdentifier>{5432c806-8626-4112-94a1-bac22e11ba96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libwbxml\tools">
+      <UniqueIdentifier>{d72807ed-504a-48f5-8ae8-ece34074b7a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libwbxml\expat">
+      <UniqueIdentifier>{dae43cc2-8b58-42d1-9e8e-29317a8b61cd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="src\wbxml_base64.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_buffers.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_charset.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_conv.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_elt.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_encoder.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_errors.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_lists.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_log.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_mem.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_parser.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_tables.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_tree.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_tree_clb_wbxml.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wbxml_tree_clb_xml.c">
+      <Filter>libwbxml</Filter>
+    </ClCompile>
+    <ClCompile Include="expat\xmlparse.c">
+      <Filter>libwbxml\expat</Filter>
+    </ClCompile>
+    <ClCompile Include="expat\xmlrole.c">
+      <Filter>libwbxml\expat</Filter>
+    </ClCompile>
+    <ClCompile Include="expat\xmltok.c">
+      <Filter>libwbxml\expat</Filter>
+    </ClCompile>
+    <ClCompile Include="expat\xmltok_impl.c">
+      <Filter>libwbxml\expat</Filter>
+    </ClCompile>
+    <ClCompile Include="expat\xmltok_ns.c">
+      <Filter>libwbxml\expat</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\attgetopt.c">
+      <Filter>libwbxml\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\wbxml2xml_tool.c">
+      <Filter>libwbxml\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\xml2wbxml_tool.c">
+      <Filter>libwbxml\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="wbxml.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="src\wbxml.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_base64.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_buffers.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_charset.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_config.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_config_internals.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_conv.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_defines.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_elt.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_encoder.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_errors.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_handlers.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_internals.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_lists.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_log.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_mem.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_parser.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_tables.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_tree.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_tree_clb_wbxml.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wbxml_tree_clb_xml.h">
+      <Filter>libwbxml</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\amigaconfig.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\ascii.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\asciitab.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\expat.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\expat_external.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\iasciitab.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\internal.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\latin1tab.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\macconfig.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\nametab.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\utf8tab.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\watcomconfig.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\winconfig.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\xmlrole.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\xmltok.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="expat\xmltok_impl.h">
+      <Filter>libwbxml\expat</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\config.h">
+      <Filter>libwbxml\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\getopt.h">
+      <Filter>libwbxml\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="wbxml.h" />
+  </ItemGroup>
+</Project>

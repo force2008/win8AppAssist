@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>23ead00a-a85f-485b-935a-1a0d05d74eb5</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="mime">
+      <UniqueIdentifier>{fe4ad3b3-709c-4fbb-8f39-e3cf813660fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{f033956b-ac2a-460c-92dd-74d7d6a109de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{d46226ac-63d4-4bcf-b294-a1414229d4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime">
+      <UniqueIdentifier>{83365145-4fd9-4567-9d43-b3776b8e4c92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include">
+      <UniqueIdentifier>{3b2ffd36-d912-4065-931b-ff0c5bc5e2eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src">
+      <UniqueIdentifier>{2927beff-1117-44c5-8159-4dc41e61e20b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\mdn">
+      <UniqueIdentifier>{0f915a81-812d-4449-bf21-57ddb06e8c43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\misc">
+      <UniqueIdentifier>{d5ed3b88-cb78-4a09-80b6-cdab6f86e82f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\platforms">
+      <UniqueIdentifier>{aba87e52-e4a3-4f21-8a64-ebc9bb8dbf0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\security">
+      <UniqueIdentifier>{33618a92-98fe-47e5-bf6e-3bef1a151d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\utility">
+      <UniqueIdentifier>{869d8e53-c4c8-4594-9d28-e2b3914f1c25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\mdn">
+      <UniqueIdentifier>{92e07708-b088-45dc-ad4d-b1abd2af5da4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\misc">
+      <UniqueIdentifier>{4ebdda89-4a6d-48ed-b606-056de8f6bb66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\utility">
+      <UniqueIdentifier>{66448ea8-efe4-4d2a-8622-ee6e012d207e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\security">
+      <UniqueIdentifier>{3cc7c073-fde5-45dc-b6ab-ba85ed122732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\platforms">
+      <UniqueIdentifier>{b146951a-1e14-4069-8bf6-aa3909dd95b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\utility\encoder">
+      <UniqueIdentifier>{4b28027e-ec81-42c0-b78f-14e20ca09bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\security\cert">
+      <UniqueIdentifier>{0bd0f5db-55d5-4bb1-8560-309542a825ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\security\digest">
+      <UniqueIdentifier>{98597540-6c55-4850-b7e5-7d9a13dc5765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\include\security\sasl">
+      <UniqueIdentifier>{80c1870a-4018-41fc-9c22-b738d5df899b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\security\cert">
+      <UniqueIdentifier>{d104565b-463b-4125-b4d0-dbd63ddd526f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\security\digest">
+      <UniqueIdentifier>{f002474c-bc30-4484-bbe3-eda976982599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\security\sasl">
+      <UniqueIdentifier>{4765655f-e6a7-44d8-ad65-320e6c1b9b14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mime\vmime\src\utility\encoder">
+      <UniqueIdentifier>{4eb12695-e469-433c-8f82-260e86860386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{bf6737ff-b533-4e94-b6c5-fc3fff9f0ea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\aes">
+      <UniqueIdentifier>{32b9394f-2cab-4dfa-a843-bf216dfc3aa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\base64">
+      <UniqueIdentifier>{28cf4a7b-d733-48ba-8503-76501a26c029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{7fca79a8-9e25-4c23-ae9c-8774b5588df2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="native.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\mime.cpp">
+      <Filter>mime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\util.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mdn\MDNHelper.cpp">
+      <Filter>mime\vmime\src\mdn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mdn\MDNInfos.cpp">
+      <Filter>mime\vmime\src\mdn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mdn\receivedMDNInfos.cpp">
+      <Filter>mime\vmime\src\mdn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mdn\sendableMDNInfos.cpp">
+      <Filter>mime\vmime\src\mdn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\misc\importanceHelper.cpp">
+      <Filter>mime\vmime\src\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\datetimeUtils.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\filteredStream.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\progressListener.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\random.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\smartPtr.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\smartPtrInt.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\stringProxy.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\stringUtils.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\urlUtils.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\b64Encoder.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\binaryEncoder.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\defaultEncoder.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\eightBitEncoder.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\encoder.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\encoderFactory.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\qpEncoder.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\sevenBitEncoder.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\encoder\uuEncoder.cpp">
+      <Filter>mime\vmime\src\utility\encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\address.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\addressList.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\attachmentHelper.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\base.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\body.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\bodyPart.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\bodyPartAttachment.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\charset.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\charsetConverter.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\component.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\constants.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\contentDisposition.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\contentDispositionField.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\contentHandler.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\contentTypeField.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\dateTime.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\defaultAttachment.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\disposition.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\emptyContentHandler.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\encoding.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\exception.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\generatedMessageAttachment.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\header.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\headerField.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\headerFieldFactory.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\htmlTextPart.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mailbox.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mailboxField.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mailboxGroup.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mailboxList.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\mediaType.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\message.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\messageBuilder.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\messageId.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\messageIdSequence.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\messageParser.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\object.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\options.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\parameter.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\parameterizedHeaderField.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\parsedMessageAttachment.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\path.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\plainTextPart.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\platform.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\propertySet.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\relay.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\streamContentHandler.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\stringContentHandler.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\text.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\textPartFactory.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\word.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\wordEncoder.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\url.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\utility\stream.cpp">
+      <Filter>mime\vmime\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\platforms\windowsHandler.cpp">
+      <Filter>mime\vmime\src\platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mime\vmime\src\fileAttachment.cpp">
+      <Filter>mime\vmime\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\common.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="mimeapi.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include=".\mimeutil.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\aes\aes.cpp">
+      <Filter>util\aes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\aes\aesTool.cpp">
+      <Filter>util\aes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\aes\aesTool_Comm.cpp">
+      <Filter>util\aes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\base64\base64coder.cpp">
+      <Filter>util\base64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\base64\base64.cpp">
+      <Filter>util\base64</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="native.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\mime.h">
+      <Filter>mime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\util.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mdn\MDNHelper.hpp">
+      <Filter>mime\vmime\include\mdn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mdn\MDNInfos.hpp">
+      <Filter>mime\vmime\include\mdn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mdn\receivedMDNInfos.hpp">
+      <Filter>mime\vmime\include\mdn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mdn\sendableMDNInfos.hpp">
+      <Filter>mime\vmime\include\mdn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\misc\importanceHelper.hpp">
+      <Filter>mime\vmime\include\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\datetimeUtils.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\filteredStream.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\progressListener.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\random.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\smartPtr.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\smartPtrInt.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\stringProxy.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\stringUtils.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\urlUtils.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\b64Encoder.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\binaryEncoder.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\defaultEncoder.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\eightBitEncoder.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\encoder.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\encoderFactory.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\qpEncoder.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\sevenBitEncoder.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\uuEncoder.hpp">
+      <Filter>mime\vmime\include\utility\encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\address.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\addressList.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\attachment.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\attachmentHelper.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\base.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\body.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\bodyPart.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\bodyPartAttachment.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\charset.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\charsetConverter.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\component.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\config.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\constants.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\contentDisposition.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\contentDispositionField.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\contentHandler.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\contentTypeField.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\dateTime.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\defaultAttachment.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\disposition.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\emptyContentHandler.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\encoding.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\exception.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\generatedMessageAttachment.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\header.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\headerField.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\headerFieldFactory.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\headerFieldValue.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\htmlTextPart.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mailbox.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mailboxField.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mailboxGroup.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mailboxList.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\mediaType.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\message.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\messageAttachment.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\messageBuilder.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\messageId.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\messageIdSequence.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\messageParser.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\object.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\options.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\parameter.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\parameterizedHeaderField.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\parsedMessageAttachment.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\parserHelpers.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\path.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\plainTextPart.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\platform.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\propertySet.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\relay.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\streamContentHandler.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\stringContentHandler.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\text.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\textPart.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\textPartFactory.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\types.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\vmime.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\word.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\wordEncoder.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\stream.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\utility\url.hpp">
+      <Filter>mime\vmime\include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\platforms\windowsHandler.hpp">
+      <Filter>mime\vmime\include\platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mime\vmime\vmime\fileAttachment.hpp">
+      <Filter>mime\vmime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\common.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="mimeapi.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include=".\mimeutil.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\aes\aes.h">
+      <Filter>util\aes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\aes\aesTool.h">
+      <Filter>util\aes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\intType.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\base64\base64coder.h">
+      <Filter>util\base64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\base64\base64.h">
+      <Filter>util\base64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\modifiedPpltasks.h">
+      <Filter>third_party</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

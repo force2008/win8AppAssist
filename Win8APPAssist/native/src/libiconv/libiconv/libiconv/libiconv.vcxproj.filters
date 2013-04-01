@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="iconv">
+      <UniqueIdentifier>{011b630a-5ab1-44f8-99d8-2ceb3966a066}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="..\..\_IConv\genaliases.c">
+      <Filter>iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\_IConv\genaliases2.c">
+      <Filter>iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\_IConv\genflags.c">
+      <Filter>iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\_IConv\gentranslit.c">
+      <Filter>iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\_IConv\iconv.c">
+      <Filter>iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\_IConv\localcharset.c">
+      <Filter>iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\_IConv\relocatable.c">
+      <Filter>iconv</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="..\..\_IConv\aliases.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\aliases_aix.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\aliases_dos.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\aliases_extra.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\aliases_osf1.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\aliases2.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\armscii_8.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ascii.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\big5.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\big5hkscs.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\c99.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ces_big5.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ces_gbk.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cjk_variants.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_1.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_2.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_3.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_4.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_4a.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_4b.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_5.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_6.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_7.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_15.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cns11643_inv.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\Config.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\converters.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp437.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp737.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp775.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp850.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp852.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp853.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp855.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp856.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp857.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp858.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp860.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp861.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp862.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp863.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp864.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp865.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp866.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp869.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp874.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp922.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp932.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp932ext.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp936ext.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp943.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp949.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp950.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp950ext.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1046.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1124.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1125.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1129.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1133.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1161.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1162.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1163.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1250.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1251.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1252.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1253.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1254.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1255.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1256.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1257.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\cp1258.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\dec_hanyu.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\dec_kanji.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\euc_cn.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\euc_jisx0213.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\euc_jp.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\euc_kr.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\euc_tw.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\flags.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\flushwc.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gb2312.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gb12345.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gb12345ext.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gb18030.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gb18030ext.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gb18030uni.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gbk.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gbkext_inv.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gbkext1.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\gbkext2.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\georgian_academy.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\georgian_ps.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\hkscs.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\hp_roman8.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\hz.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\IConv.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso646_cn.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso646_jp.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso2022_cn.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso2022_cnext.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso2022_jp.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso2022_jp1.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso2022_jp2.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso2022_jp3.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso2022_kr.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_1.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_2.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_3.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_4.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_5.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_6.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_7.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_8.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_9.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_10.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_13.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_14.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_15.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\iso8859_16.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\isoir165.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\isoir165ext.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\java.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\jisx0201.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\jisx0208.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\jisx0212.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\jisx0213.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\johab.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\johab_hangul.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\koi8_r.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\koi8_ru.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\koi8_t.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\koi8_u.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ksc5601.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\localcharset.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\loop_unicode.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\loop_wchar.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\loops.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_arabic.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_centraleurope.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_croatian.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_cyrillic.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_greek.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_hebrew.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_iceland.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_roman.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_romania.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_thai.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_turkish.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mac_ukraine.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\mulelao.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\nextstep.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\relocatable.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\riscos1.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\shift_jisx0213.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\sjis.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\tcvn.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\tds565.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\tis620.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\translit.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs2.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs2be.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs2internal.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs2le.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs2swapped.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs4.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs4be.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs4internal.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs4le.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\ucs4swapped.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\uhc_1.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\uhc_2.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\utf7.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\utf8.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\utf16.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\utf16be.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\utf16le.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\utf32.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\utf32be.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\utf32le.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\vietcomb.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\_IConv\viscii.h">
+      <Filter>iconv</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\_IConv\config.h.msvc">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\config.h_vms">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\encodings.def">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\encodings_aix.def">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\encodings_dos.def">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\encodings_extra.def">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\encodings_local.def">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\encodings_osf1.def">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\Makefile.in">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\Makefile.msvc">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\Makefile.os2">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\Makefile.vms">
+      <Filter>iconv</Filter>
+    </None>
+    <None Include="..\..\_IConv\translit.def">
+      <Filter>iconv</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>47b40cc3-504e-41a2-a86b-f67ec8c7a8a6</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{0170a69c-b734-4fd7-a7a1-f55aa96b36f2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="constants.cpp" />
+    <ClCompile Include="database.cpp" />
+    <ClCompile Include="SQLite3.c" />
+    <ClCompile Include="statement.cpp" />
+    <ClCompile Include="common.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="database.h" />
+    <ClInclude Include="SQLite3.h" />
+    <ClInclude Include="statement.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="res\component_manifest.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="res\product_version.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\modifiedPpltasks.h">
+      <Filter>third_party</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\component_manifest.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
