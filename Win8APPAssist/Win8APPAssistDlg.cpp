@@ -10,8 +10,12 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-
+#ifdef UNICODE
+#define Tstring wstring
+#else
+#define Tstring string
+#endif
+#define RELEASE(p)    { if(p) { delete p; p = NULL; } }
 // CAboutDlg dialog used for App About
 
 class CAboutDlg : public CDialogEx
@@ -228,7 +232,15 @@ void CWin8APPAssistDlg::OnBnClickedOk()
 		if ( BST_CHECKED == IsDlgButtonChecked(IDC_NOTIFICATION ) )
 		{
 			// นดัก
-			PlugIn::installPlugin(notifications,L"notifications");
+			CString guid = getProjectGuid(path+notifications+L"\\"+notificationsProjectFile);
+			WCHAR *nguid = new WCHAR[64];
+			CString slnGuid = NewGuid(nguid);
+			Sln *slnFile = new Sln(targetSlnFile);
+			slnFile->addProject(L"notifications",L"notifications\\"+notificationsProjectFile,nguid);
+			copyFolderAllFiles(path+notifications,cPathname+ L"\\notifications");
+			RELEASE(slnFile);
+			//PlugIn::installPlugin(notifications,L"notifications");
+			CopyProject(L"notifications",path+notifications,notificationsProjectFile,cPathname+ L"\\notifications");
 		}
 		else if(BST_CHECKED == IsDlgButtonChecked(IDC_SQLITE3 )){
 			PlugIn::installPlugin(sqlite3,L"sqlite3");
@@ -257,10 +269,52 @@ BOOL CWin8APPAssistDlg::createProject(CString name,CString targetPath){
 	}
 	CopyFile(webappPath+L"\\webapp.sln",targetPath+".sln",FALSE);
 	copyFolderAllFiles(webappPath+L"\\webapp",targetPath);
-	CFile::Rename(targetPath+"\\webapp.jsproj",targetPath+"\\"+name+".jsproj");
+	CString targetProjectFile = targetPath+"\\"+name+".jsproj";
+	if (GetFileAttributes(targetProjectFile) != INVALID_FILE_ATTRIBUTES) {
+		CFile::Remove(targetProjectFile);
+	}
+	CFile::Rename(targetPath+"\\webapp.jsproj",targetProjectFile);
+	targetSlnFile = targetPath+L".sln";
+	Sln *slnFile = new Sln(targetSlnFile);
+	slnFile->changeProject(L"webapp",name+L"\\"+name+L".jsproj");
+	RELEASE(slnFile);
 	return TRUE;
 }
+CString CWin8APPAssistDlg::getProjectGuid(CString file){
+	LPTSTR filename = file.GetBuffer();
 
+	std::Tstring str(file.GetBuffer());
+	int nLength=str.length() + 1;
+	//std::string str = "string";
+	TCHAR *cstr = new TCHAR[nLength];
+	char *saRet = new char[nLength];
+	wcscpy_s(cstr,nLength,str.c_str());
+	WideCharToMultiByte(CP_ACP, 0, cstr, nLength, saRet, 
+		nLength*2+1, NULL, NULL);
+	//strcpy(cstr,str.length() + 1,str.c_str());
+	//cstr, str.c_str());
+	// do stuff
+	//delete [] cstr;
+	//sz = (char*)file.GetBuffer(0);
+	//memcpy(sz,file.GetBuffer(0),nLength);
+	TiXmlDocument doc(saRet);
+	//doc.LoadFile();
+	bool loadOkay = doc.LoadFile();
+
+	if ( !loadOkay )
+	{
+		TRACE( "Could not load test file %s. Error='%s'. Exiting.\n",saRet, doc.ErrorDesc() );
+		//exit( 1 );
+	}
+	TiXmlHandle docH( &doc );
+	TiXmlElement* element = docH.FirstChildElement( "Project").FirstChildElement("PropertyGroup").FirstChildElement("ProjectGuid").Element();
+	CString guid=NULL;
+	if ( element ){
+		guid = element->GetText();
+	}
+	TRACE(_T("%s\r\n"),guid);
+	return guid;
+}
 void CWin8APPAssistDlg::copyFolderAllFiles(CString csSourceFolder, CString csNewFolder)
 {
 	CFileFind f;
@@ -279,19 +333,63 @@ void CWin8APPAssistDlg::copyFolderAllFiles(CString csSourceFolder, CString csNew
 		if(f.IsDots()) continue;
 		if(f.IsDirectory())
 		{
-			_mkdir((char*)p);
+			//_mkdir((char*)p);
 			copyFolderAllFiles(csSourceFolder+"\\"+f.GetFileName(),csNewFolder+"\\"+f.GetFileName());
 		}
 		::SetFileAttributes(csSourceFolder+"\\"+f.GetFileName(),FILE_ATTRIBUTE_NORMAL);
 		::AfxGetApp()->DoWaitCursor(1);
 		CString source = csSourceFolder+"\\"+f.GetFileName();
-		
+
 		if (GetFileAttributes(csNewFolder) == INVALID_FILE_ATTRIBUTES) {
-		  CreateDirectory(csNewFolder,NULL);
+			CreateDirectory(csNewFolder,NULL);
 		}
 		CString dest = csNewFolder+"\\"+f.GetFileName();
 		::CopyFile(source,dest,FALSE);
 		::AfxGetApp()->DoWaitCursor(-1);
 
 	}
+}
+char* CWin8APPAssistDlg::NewGuid(char* guidBuf)
+{
+	memset(guidBuf,0,64);
+	GUID guid;
+	CoInitialize(NULL);
+	if(S_OK == CoCreateGuid(&guid))
+	{
+		sprintf_s(guidBuf, 64,
+			"{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
+			guid.Data1,
+			guid.Data2,
+			guid.Data3,
+			guid.Data4[0], guid.Data4[1],
+			guid.Data4[2], guid.Data4[3],
+			guid.Data4[4], guid.Data4[5],
+			guid.Data4[6], guid.Data4[7]);
+	}
+	CoUninitialize();
+	return guidBuf;
+}
+
+WCHAR* CWin8APPAssistDlg::NewGuid(WCHAR* guidBuf)
+{
+	char guidBufA[64];
+	memset(guidBufA,0,64);
+	NewGuid(guidBufA);
+	if(guidBufA)
+	{
+		MultiByteToWideChar(CP_ACP,NULL,guidBufA,64,guidBuf,64);
+	}
+	return guidBuf;
+}
+
+void  CWin8APPAssistDlg::CopyProject(CString projectName,CString srcProjectPath,CString srcProjectFile,CString targetPath){
+// นดัก
+	CString guid = getProjectGuid(srcProjectPath+L"\\"+notificationsProjectFile);
+	WCHAR *nguid = new WCHAR[64];
+	CString slnGuid = NewGuid(nguid);
+	Sln *slnFile = new Sln(targetSlnFile);
+	slnFile->addProject(projectName,projectName+L"\\"+notificationsProjectFile,nguid);
+	copyFolderAllFiles(srcProjectPath,targetPath);
+	RELEASE(slnFile);
+
 }

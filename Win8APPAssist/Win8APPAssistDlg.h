@@ -8,20 +8,25 @@
 // CWin8APPAssistDlg dialog
 class CWin8APPAssistDlg : public CDialogEx
 {
-// Construction
+	// Construction
 public:
 	CWin8APPAssistDlg(CWnd* pParent = NULL);	// standard constructor
 
-// Dialog Data
+	// Dialog Data
 	enum { IDD = IDD_WIN8APPASSIST_DIALOG };
 	CEdit *ppath;
 	CEdit *pname;
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 	BOOL createProject(CString path,CString name);
 	void copyFolderAllFiles(CString csSourceFolder, CString csNewFolder);
+	char* NewGuid(char* guidBuf);
+	WCHAR* NewGuid(WCHAR* guidBuf);
+	CString getProjectGuid(CString path);
+	void CopyProject(CString projectName,CString srcProjectPath,CString srcProjectFile,CString targetPath);
+	CString targetSlnFile;
 	TCHAR *path;
-// Implementation
+	// Implementation
 protected:
 	HICON m_hIcon;
 

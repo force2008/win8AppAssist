@@ -35,9 +35,9 @@
 
 #include "plugin.h"
 #include <direct.h>
-
-
-
+#include <vector>
+#include "ParseSln.h"
+#include "tinyxml/tinyxml.h"
 
 
 
