@@ -27,8 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-    <ProjectGuid>{488335b3-5d11-4b0c-b5fd-2619e394548f}</ProjectGuid>
+    <ProjectGuid>{b0128862-e988-4232-96fe-2f23ee6c4869}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>native</ProjectName>
     <RootNamespace>native</RootNamespace>
@@ -93,335 +92,118 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IntDir>$(SolutionDir)\tmp\$(Platform)\$(MSBuildProjectName)_$(Configuration)\</IntDir>
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
-    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\tmp\$(Platform)\$(MSBuildProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\tmp\$(Platform)\$(MSBuildProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\tmp\$(Platform)\$(MSBuildProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\tmp\$(Platform)\$(MSBuildProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\tmp\$(Platform)\$(MSBuildProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\include;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\src\mime\vmime;$(ProjectDir)..\..\src\third_party;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <CompileAsWinRT>true</CompileAsWinRT>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libiconv_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\lib\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\include;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\src\mime\vmime;$(ProjectDir)..\..\src\third_party;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\lib\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\include;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\src\mime\vmime;$(ProjectDir)..\..\src\third_party;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libiconv_arm_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\lib\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\include;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\src\mime\vmime;$(ProjectDir)..\..\src\third_party;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libiconv_arm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\lib\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\include;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\src\mime\vmime;$(ProjectDir)..\..\src\third_party;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libiconv_x64_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\lib\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\include;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\src\mime\vmime;$(ProjectDir)..\..\src\third_party;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libiconv_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\lib\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\common\common.h" />
-    <ClInclude Include="..\mime\mime.h" />
-    <ClInclude Include="..\mime\vmime\vmime\address.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\addressList.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\attachment.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\attachmentHelper.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\base.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\body.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\bodyPart.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\bodyPartAttachment.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\charset.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\charsetConverter.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\component.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\config.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\constants.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\contentDisposition.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\contentDispositionField.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\contentHandler.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\contentTypeField.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\dateTime.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\defaultAttachment.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\disposition.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\emptyContentHandler.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\encoding.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\exception.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\fileAttachment.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\generatedMessageAttachment.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\header.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\headerField.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\headerFieldFactory.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\headerFieldValue.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\htmlTextPart.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mailbox.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mailboxField.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mailboxGroup.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mailboxList.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mdn\MDNHelper.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mdn\MDNInfos.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mdn\receivedMDNInfos.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mdn\sendableMDNInfos.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\mediaType.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\message.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\messageAttachment.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\messageBuilder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\messageId.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\messageIdSequence.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\messageParser.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\misc\importanceHelper.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\object.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\options.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\parameter.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\parameterizedHeaderField.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\parsedMessageAttachment.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\parserHelpers.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\path.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\plainTextPart.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\platform.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\platforms\windowsHandler.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\propertySet.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\relay.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\streamContentHandler.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\stringContentHandler.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\text.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\textPart.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\textPartFactory.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\types.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\datetimeUtils.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\b64Encoder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\binaryEncoder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\defaultEncoder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\eightBitEncoder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\encoder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\encoderFactory.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\qpEncoder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\sevenBitEncoder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\encoder\uuEncoder.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\filteredStream.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\progressListener.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\random.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\smartPtr.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\smartPtrInt.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\stream.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\stringProxy.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\stringUtils.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\url.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\utility\urlUtils.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\vmime.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\word.hpp" />
-    <ClInclude Include="..\mime\vmime\vmime\wordEncoder.hpp" />
-    <ClInclude Include="..\third_party\modifiedPpltasks.h" />
-    <ClInclude Include="..\util\aes\aes.h" />
-    <ClInclude Include="..\util\aes\aesTool.h" />
-    <ClInclude Include="..\util\base64\base64.h" />
-    <ClInclude Include="..\util\base64\base64coder.h" />
-    <ClInclude Include="..\util\intType.h" />
-    <ClInclude Include="..\util\util.h" />
-    <ClInclude Include="mimeapi.h" />
-    <ClInclude Include="native.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include=".\mimeutil.h" />
+    <ClInclude Include="Class1.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\common\common.cpp" />
-    <ClCompile Include="..\mime\mime.cpp" />
-    <ClCompile Include="..\mime\vmime\src\address.cpp" />
-    <ClCompile Include="..\mime\vmime\src\addressList.cpp" />
-    <ClCompile Include="..\mime\vmime\src\attachmentHelper.cpp" />
-    <ClCompile Include="..\mime\vmime\src\base.cpp" />
-    <ClCompile Include="..\mime\vmime\src\body.cpp" />
-    <ClCompile Include="..\mime\vmime\src\bodyPart.cpp" />
-    <ClCompile Include="..\mime\vmime\src\bodyPartAttachment.cpp" />
-    <ClCompile Include="..\mime\vmime\src\charset.cpp" />
-    <ClCompile Include="..\mime\vmime\src\charsetConverter.cpp">
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_WINRT_DLL;_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
-    <ClCompile Include="..\mime\vmime\src\component.cpp" />
-    <ClCompile Include="..\mime\vmime\src\constants.cpp" />
-    <ClCompile Include="..\mime\vmime\src\contentDisposition.cpp" />
-    <ClCompile Include="..\mime\vmime\src\contentDispositionField.cpp" />
-    <ClCompile Include="..\mime\vmime\src\contentHandler.cpp" />
-    <ClCompile Include="..\mime\vmime\src\contentTypeField.cpp" />
-    <ClCompile Include="..\mime\vmime\src\dateTime.cpp" />
-    <ClCompile Include="..\mime\vmime\src\defaultAttachment.cpp" />
-    <ClCompile Include="..\mime\vmime\src\disposition.cpp" />
-    <ClCompile Include="..\mime\vmime\src\emptyContentHandler.cpp" />
-    <ClCompile Include="..\mime\vmime\src\encoding.cpp" />
-    <ClCompile Include="..\mime\vmime\src\exception.cpp" />
-    <ClCompile Include="..\mime\vmime\src\fileAttachment.cpp" />
-    <ClCompile Include="..\mime\vmime\src\generatedMessageAttachment.cpp" />
-    <ClCompile Include="..\mime\vmime\src\header.cpp" />
-    <ClCompile Include="..\mime\vmime\src\headerField.cpp" />
-    <ClCompile Include="..\mime\vmime\src\headerFieldFactory.cpp" />
-    <ClCompile Include="..\mime\vmime\src\htmlTextPart.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mailbox.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mailboxField.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mailboxGroup.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mailboxList.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mdn\MDNHelper.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mdn\MDNInfos.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mdn\receivedMDNInfos.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mdn\sendableMDNInfos.cpp" />
-    <ClCompile Include="..\mime\vmime\src\mediaType.cpp" />
-    <ClCompile Include="..\mime\vmime\src\message.cpp" />
-    <ClCompile Include="..\mime\vmime\src\messageBuilder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\messageId.cpp" />
-    <ClCompile Include="..\mime\vmime\src\messageIdSequence.cpp" />
-    <ClCompile Include="..\mime\vmime\src\messageParser.cpp" />
-    <ClCompile Include="..\mime\vmime\src\misc\importanceHelper.cpp" />
-    <ClCompile Include="..\mime\vmime\src\object.cpp" />
-    <ClCompile Include="..\mime\vmime\src\options.cpp" />
-    <ClCompile Include="..\mime\vmime\src\parameter.cpp" />
-    <ClCompile Include="..\mime\vmime\src\parameterizedHeaderField.cpp" />
-    <ClCompile Include="..\mime\vmime\src\parsedMessageAttachment.cpp" />
-    <ClCompile Include="..\mime\vmime\src\path.cpp" />
-    <ClCompile Include="..\mime\vmime\src\plainTextPart.cpp" />
-    <ClCompile Include="..\mime\vmime\src\platform.cpp" />
-    <ClCompile Include="..\mime\vmime\src\platforms\windowsHandler.cpp" />
-    <ClCompile Include="..\mime\vmime\src\propertySet.cpp" />
-    <ClCompile Include="..\mime\vmime\src\relay.cpp" />
-    <ClCompile Include="..\mime\vmime\src\streamContentHandler.cpp" />
-    <ClCompile Include="..\mime\vmime\src\stringContentHandler.cpp" />
-    <ClCompile Include="..\mime\vmime\src\text.cpp" />
-    <ClCompile Include="..\mime\vmime\src\textPartFactory.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\datetimeUtils.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\b64Encoder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\binaryEncoder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\defaultEncoder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\eightBitEncoder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\encoder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\encoderFactory.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\qpEncoder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\sevenBitEncoder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\encoder\uuEncoder.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\filteredStream.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\progressListener.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\random.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\smartPtr.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\smartPtrInt.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\stream.cpp">
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_WINRT_DLL;_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
-    <ClCompile Include="..\mime\vmime\src\utility\stringProxy.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\stringUtils.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\url.cpp" />
-    <ClCompile Include="..\mime\vmime\src\utility\urlUtils.cpp" />
-    <ClCompile Include="..\mime\vmime\src\word.cpp" />
-    <ClCompile Include="..\mime\vmime\src\wordEncoder.cpp" />
-    <ClCompile Include="..\util\aes\aes.cpp" />
-    <ClCompile Include="..\util\aes\aesTool.cpp" />
-    <ClCompile Include="..\util\aes\aesTool_Comm.cpp" />
-    <ClCompile Include="..\util\base64\base64.cpp" />
-    <ClCompile Include="..\util\base64\base64coder.cpp" />
-    <ClCompile Include="..\util\util.cpp" />
-    <ClCompile Include="mimeapi.cpp" />
-    <ClCompile Include="native.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -430,7 +212,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\mimeutil.cpp" />
+    <ClCompile Include="Class1.cpp" />
+    <ClCompile Include="util.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

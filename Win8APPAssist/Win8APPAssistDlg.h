@@ -24,6 +24,9 @@ protected:
 	WCHAR* NewGuid(WCHAR* guidBuf);
 	CString getProjectGuid(CString path);
 	void CopyProject(CString projectName,CString srcProjectPath,CString srcProjectFile,CString targetPath);
+	BOOL changeMainProjectFile(CString file);
+	void addProjectReference(CString projectFile,CString referenceProjectFile);
+	void CString2Char(CString cstr,char* &saRet);
 	CString targetSlnFile;
 	TCHAR *path;
 	// Implementation
