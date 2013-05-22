@@ -6,7 +6,7 @@
 /// requestLockScreenAccess, registerBackgroundTask, generateChannel, getChannel, modifyChannel
 (function () {
     "use strict";
-
+    var _cache = document.createDocumentFragment();
     // Network State Manager
     WinJS.Namespace.define("Util.Network", {
         /// <summary>网络状态管理对象</summary>
@@ -32,22 +32,31 @@
             },
             /// <summary>网络状态改变时回调</summary>
             onNetworkChanged: function () {
-                var isConnected = !!this.networkInfo.getInternetConnectionProfile();
-                if (this.isConnected !== isConnected) {
-                    this.isConnected = isConnected;
-                    this.callback.forEach(function (item) {
-                        item(this.isConnected);
-                    }.bind(this))
+                var connectPro = this.networkInfo.getInternetConnectionProfile();
+                if (!!connectPro && connectPro.getNetworkConnectivityLevel() == Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess) {
+                    this.isConnected = true;
                 }
-                this.isConnected = isConnected;
+                else
+                {
+                    this.isConnected = false;
+                }
+                this.callback.forEach(function (item) {
+                    item(this.isConnected);
+                }.bind(this))
             },
             /// <summary>获取当前网络状态</summary>
             isCurrentConnected: function () {
-                this.isConnected = !!this.networkInfo.getInternetConnectionProfile();
-                return this.isConnected;
+                var connectPro = !!this.networkInfo.getInternetConnectionProfile();
+                if (connectPro != null) {
+                    return (connectPro.getNetworkConnectivityLevel() == Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess)
+                }
+                else {
+                    return false;
+                }
             },
             setState: function () {
                 this.networkInfo.addEventListener("networkstatuschanged", this.onNetworkChanged.bind(this));
+
                 this.isConnected = !!this.networkInfo.getInternetConnectionProfile();
             }
         }
@@ -56,7 +65,99 @@
     (function () {
         Util.Network.NetworkStateManager.setState();
     }())
+    WinJS.Namespace.define("Util.Element", {
+        /// <summary>查找符合条件的第一个祖先节点</summary>
+        /// <param name="node" type="Node">源节点</param>
+        /// <param name="condition" type="Function">条件函数</param>
+        /// <returns type="Node"/>
+        findAncestor: function (node, condition) {
+            if (node && typeof condition == "function") {
+                while (node) {
+                    if (condition(node)) {
+                        return node;
+                    }
+                    node = node.parentNode;
+                }
+            }
+        },
+        /// <summary>判断是否有指定的className</summary>
+        /// <param name="node" type="Node">DOM节点</param>
+        /// <param name="className" type="String">class</param>
+        hasClassName: function (node, className) {
+            return (node.className.search('(\\s|^)(?:' + className.replace(/\s+/g, '|') + ')(?=\\s|$)') >= 0);
+        },
+        /// <summary>查找指定ID的节点</summary>
+        /// <param name="id" type="String">id</param>
+        /// <returns type="Node"/>
+        id: function (id) {
+            return document.getElementById(id);
+        },
+        /// <summary>获取浮动元素的4个点的位置,确定浮动元素的位置</summary>
+        /// <param name="element" type="Node">源节点</param>
+        /// <param name="offsetTop" type="int">垂直的偏移量</param>
+        /// <param name="offsetWidth" type="int">水平的偏移量</param>
+        /// <returns type="Rect "/>
+        getRect: function (element, offsetTop, offsetWidth) {
+            offsetTop = offsetTop || 5;
+            offsetWidth = offsetWidth || 0;
 
+            var selectionRect = element.getBoundingClientRect();
+            var rect = {
+                x: this.getClientCoordinates(selectionRect.left + offsetWidth),
+                y: this.getClientCoordinates(selectionRect.top + offsetTop),
+                width: this.getClientCoordinates(selectionRect.width),
+                height: this.getClientCoordinates(selectionRect.height)
+            };
+            //var rect = {
+            //    x: selectionRect.left + offsetWidth,
+            //    y: selectionRect.top + offsetTop,
+            //    width: selectionRect.width,
+            //    height: selectionRect.height
+            //};
+            return rect;
+        },
+        getClientCoordinates: function (cssUnits) {
+            // Translate css coordinates to system coordinates.
+            return cssUnits * (96 / window.screen.deviceXDPI);
+        },
+        /// <summary>获取节点的数据属性值</summary>
+        /// <param name="node" type="Node">节点</param>
+        /// <param name="key" type="String">属性名</param>
+        /// <returns type="String" value="属性值"/>
+        getData: function (node, key) {
+            if (!node || !node.getAttribute) return;
+            return node.getAttribute("data-" + key);
+        },
+        /// <summary>滚动祖先元素的滚动条，使元素处于可视状态</summary>
+        /// <param name="element" type="HTMLElement">元素</param>
+        /// <param name="ancestor" type="HTMLElement">祖先元素，可选，默认为父元素</param>
+        scroll: function (element, ancestor) {
+            ancestor = ancestor || element && element.parentNode;
+            if (!ancestor || ancestor.scrollHeight === ancestor.clientHeight) return;
+            var pos0 = utils.getPosition(element);
+            var pos1 = utils.getPosition(ancestor);
+            if (pos0.top < pos1.top) {
+                ancestor.scrollTop -= pos1.top - pos0.top;
+            } else if (pos0.top + pos0.height > pos1.top + pos1.height) {
+                ancestor.scrollTop += pos0.top - pos1.top;
+            }
+        },
+        /// <summary>获取/设置样式</summary>
+        /// <param name="element" type="HTMLElement">元素</param>
+        /// <param name="name" type="String">css属性名</param>
+        /// <param name="value" type="String">css属性值，可选</param>
+        /// case 0: NM.ELement.css(element, 'height');
+        /// case 1: NM.ELement.css(element, 'width', '100px');
+        ///         NM.Element.css({
+        ///             width: '100px',
+        ///             height: '200px'
+        ///         })
+        css: function (element, name, value) {
+            return value != undefined || typeof name === 'object' ?
+                setStyle(element, name, value) :
+                getStyle(element, name);
+        }
+    })
     WinJS.Namespace.define("Util", {
         /// <summary>安装包信息</summary>
         Package: {
@@ -112,6 +213,7 @@
             });
             return queryObject;
         },
+        F: function () { return !1; },
         /// <summary>将数组根据指定键值转换成对象</summary>
         /// <param name="arr" type="Array">数组</param>
         /// <param name="key" type="String">键值，可选参数，默认为"id"</param>
@@ -131,9 +233,25 @@
         /// <param name="data" type="Object">具体数据</param>
         /// <param name="type" type="String">类型（Function | String | Date object）</param>
         isTypeOf: function (data, type) {
-            if (data === null) return _type == 'null';
-            if (data === undefined) return _type == 'undefined';
+            if (data === null) return type == 'null';
+            if (data === undefined) return type == 'undefined';
             return Object.prototype.toString.call(data) == '[object ' + type + ']';
+        },
+        /// <summary>获取节点</summary>
+        /// <param name="element" type="String||element">节点或id为字符串或数据的</param>
+        getElement:function(element){
+            if (!this.isTypeOf(element,'String')&&
+                !this.isTypeOf(element,'Number'))
+                return element;
+            return document.getElementById(element);
+        },
+        /// <summary>将html字符串变成node</summary>
+
+        html2node: function (_html) {
+            var _div = document.createElement('div');
+            _div.innerHTML = window.toStaticHTML(_html);
+            var _list = _div.children;
+            return _list.length > 1 ? _div : _list[0];
         },
         /// <summary>返回指定项在数组的index</summary>
         /// <param name="list" type="Array">数组</param>
@@ -152,6 +270,13 @@
             }
             return index;
         },
+        reverseEach: function (list, callback) {
+            for (var l = list.length - 1, i = l; i >= 0; i--) {
+                callback(list[i], i, list);
+            }
+        },
+        f: function () { return !1; },
+        r:[],
         setData: function (key, data) {
             this.createContainer('app-data');
             var composite = new Windows.Storage.ApplicationDataCompositeValue();
@@ -270,16 +395,52 @@
         /// <param name="to" type="Object">目的对象</param>
         /// <param name="from" type="Object">源对象</param>
         /// <returns type="Object">目的对象</returns>
-        mix: function (to, from) {
-            if (to == null && from == null) return null;
-            to = to || {};
-            if (from) {
-                for (var p in from) {
-                    to[p] = from[p];
-                }
-            }
-            return to;
+        mix: function (_object, _config,_filter) {
+            if (!_object || !_config)
+                return _object;
+            _object = _object || {};
+            _filter = _filter || Util.F;
+            for (var x in _config)
+                if (!_filter(_config[x], x))
+                    _object[x] = _config[x];
+            return _object;
+
         },
+        /// <summary>生成伪随机字符串</summary>
+        /// <param name="length" type="Number">长度</param>
+        randString : (function(){
+            var _chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+            return function(length){
+                length = length||10;
+                var _result = [];
+                for(var i=0,_rnum;i<length;++i){
+                    _rnum = Math.floor(Math.random()*_chars.length);
+                    _result.push(_chars.charAt(_rnum));
+                }
+                return _result.join('');
+            }
+        })(),
+        /// <summary>生成伪随机数</summary>
+        /// <param name="length" type="Number">长度</param>
+        randNumberString: function(length){
+            length = Math.max(0,Math.min(length||8,30));
+            var _min = Math.pow(10, length - 1), _max = _min * 10;
+            var number = Math.floor(Math.random() * (_max - _min) + _min)
+            return number.toString();
+        },
+        removeByEC: function (_elm) {
+            _cache.appendChild(_elm);
+        },
+        createElement:function(_tag,_class,_parent){
+            if(!_tag)return;
+            var _elm = document.createElement(_tag);
+            if (!!_class)
+                _elm.class = _class;
+            if(!!_parent)
+                _parent.appendChild(_elm)
+            return _elm
+        },
+        /// <summary>用户数据存储对象</summary>
         localSettings: Windows.Storage.ApplicationData.current.localSettings,
         createContainer: function (key) {
             this.localSettings.createContainer(key, Windows.Storage.ApplicationDataCreateDisposition.always);
@@ -405,5 +566,118 @@
             composite['expirationTime'] = channel.expirationTime;
             this.localSettings.containers.lookup('channel').values['channelInfo'] = composite;
         }
+    })
+    WinJS.Namespace.define("Util.Element", {
+            /// <summary>鼠标模拟手势操作的x,y方向的临界值，可以对其进行全设置，以增加灵活性</summary>
+            SWIPETHRESHOLDX: 15,
+            SWIPETHRESHOLDY: 15,
+            addEvent: function (_elm, _type, _handler, _isCapture) {
+                //swipe right,swipe left,swipe up,swipe down
+                if (_type.indexOf('swipe') == 0) {
+                    var swipeDirection = _type.substr(5).toLowerCase();
+                    var swipe = _elm.getAttribute('swipeDirection');
+                    if (!!swipe) {
+                        swipe += +' '+swipeDirection;
+                        _elm.setAttribute('swipeDirection', swipe);
+                        _elm.addEventListener(_type, _handler, false);
+                        return;
+                    }
+                    _elm.setAttribute('swipeDirection', swipeDirection);
+                    _elm.addEventListener('MSPointerDown', this._processDown.bind(this, _elm), false);
+                    _elm.addEventListener('MSPointerMove', this._processMove.bind(this, _elm), false);
+                    //list.addEventListener('mousemove', this._processMove.bind(this), false);
+                    _elm.addEventListener('MSPointerUp', this._processUp.bind(this, _elm), false);
+                    _elm.addEventListener('MSPointerCancel', this._processUp.bind(this, _elm), false);
+                    _elm.addEventListener(_type, _handler, false);
+                }
+                else {
+                    _elm.addEventListener(_type, _handler, _isCapture);
+                }
+            },
+            _processDown: function ( _elm, _event) {
+                this._startPointX = _event.currentPoint.position.x;
+                this._startPointY = _event.currentPoint.position.y;
+
+                var target = Util.Element.findAncestor(_event.target, function (target) {
+                    return target === _elm
+                });
+
+                if (!target)
+                    return;
+                this.isSwipe = true;
+                this.isClick = true;
+                this.swipeDone = false;
+            },
+            _processMove: function (_elm,_event) {
+                if (!this.isSwipe || this.swipeDone)
+                    return;
+                var swipe = _elm.getAttribute('swipeDirection');
+                this._endPointX = _event.x;
+                this._endPointY = _event.y;
+                
+                var target = Util.Element.findAncestor(_event.target, function (target) {
+                    return target === _elm;
+                });
+
+                if (!target)
+                    return;
+
+                //swipe right
+                if ((this._endPointX - this._startPointX >= this.SWIPETHRESHOLDX) && swipe.indexOf('right')!=-1) {
+                    var evt = document.createEvent("MouseEvents");
+                    evt.initMouseEvent("swipeRight", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                    target.dispatchEvent(evt);
+                    this.isSwipe = true;
+                    this.isClick = false;
+                    this.swipeDone = true;
+                    return;
+                }
+
+                //swipe down
+                if ((this._endPointY - this._startPointY >= this.SWIPETHRESHOLDY) && swipe.indexOf('down') != -1) {
+                    var evt = document.createEvent("MouseEvents");
+                    evt.initMouseEvent("swipeDown", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                    target.dispatchEvent(evt);
+                    this.isSwipe = true;
+                    this.isClick = false;
+                    this.swipeDone = true;
+                    return;
+                }
+                //swipe up
+                if ((this._startPointY - this._endPointY >= this.SWIPETHRESHOLDY) && swipe.indexOf('up') != -1) {
+                    var evt = document.createEvent("MouseEvents");
+                    evt.initMouseEvent("swipeUp", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                    target.dispatchEvent(evt);
+                    this.isSwipe = true;
+                    this.isClick = false;
+                    this.swipeDone = true;
+                    return;
+                }
+                //swipe left
+                if ((this._startPointX - this._endPointX >= this.SWIPETHRESHOLDX) &&  swipe.indexOf('left')!=-1) {
+                    var evt = document.createEvent("MouseEvents");
+                    evt.initMouseEvent("swipeLeft", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                    target.dispatchEvent(evt);
+                    this.isSwipe = true;
+                    this.isClick = false;
+                    this.swipeDone = true;
+                    return;
+                }
+            },
+            _processUp: function (_elm,_event) {
+                this._endPointX = _event.currentPoint.position.x;
+                this._endPointY = _event.currentPoint.position.y;
+                this.isSwipe = false;
+                this.swipeDone = false;
+                ////swipe right
+                if ((Math.abs(this._startPointX - this._endPointX) < this.SWIPETHRESHOLDX) && (Math.abs(this._startPointY - this._endPointY) < this.SWIPETHRESHOLDY)) {
+                    this.isClick = true;
+                    var evt = document.createEvent("MouseEvents");
+                    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                    _elm.dispatchEvent(evt);
+                }
+            }
+
+        
     })
 })();

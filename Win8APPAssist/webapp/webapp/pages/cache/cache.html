@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>homePage</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/index.css" rel="stylesheet" />
+    <link href="/pages/cache/cache.css" rel="stylesheet" />
+    <script src="/js/module.js"></script>
+    <script src="/pages/cache/cache.js"></script>
+    <script src="/pages/cache/cachetest.js"></script>
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment homepage">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Welcome to NavAPP!</span>
+                <input type="button" value="删除选中项" id="delete">
+                <input type="button" value="增加项" id="add">
+                <input type="button" value="显示选中的第一项" id="viewitem">
+                <input type="button" value="编辑选中的第一项" id="edit">
+            </h1>
+        </header>
+        <div id="itempane">
+        </div>
+        <section aria-label="Main content" role="main">
+            <div class="cnt">
+                <div class="container" id="container"></div>
+            </div>
+            <div id="myItemTemplate" data-win-control="WinJS.Binding.Template" style="display: none">
+                <div class="myItem">
+                    <h3 data-win-bind="innerText: title"></h3>
+                    <span data-win-bind="innerText: text"></span>
+                </div>
+            </div>
+            <div id="itemViewTemplate" data-win-control="WinJS.Binding.Template" style="display: none">
+                <div class="paneItem">
+                    <h3 data-win-bind="innerText: title" class="title"></h3>
+                    <span data-win-bind="innerText: text" class="text"></span>
+                </div>
+            </div>
+            <div id="itemEditTemplate" data-win-control="WinJS.Binding.Template" style="display: none">
+                <div class="paneItem">
+                    <input data-win-bind="value: title" class="title" />
+                    <textarea data-win-bind="value: text" class="edittext"></textarea>
+                    <div>
+                        <input type="button" value="保存">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+</html>

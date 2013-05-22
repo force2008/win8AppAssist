@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/index.css" rel="stylesheet" />
+    <link href="/pages/home/home.css" rel="stylesheet" />
+    <script src="/js/data/sqlite3.js"></script>
+    <script src="/js/data/sqlite_ext.js"></script>
+    <script src="/js/event.js"></script>
+    <script src="/pages/sqlit3/sqlit3.js"></script>
+</head>
+<body>
+    
+    <div class="fragment homepage">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Welcome to NavAPP!</span>
+            </h1>
+        </header>
+        <section aria-label="Main content" role="main">
+            <button id="initbtn">初使化数据库</button>
+            <button id="insert">插入数据</button>
+            <input type="text" placeholder="请输入要删除的id" id="recordid"/>
+            <button id="delete">删除数据</button>
+            <div id="rst"></div>
+            <table>
+                <tr><th>id</th><td>a</td><td>b</td></tr>
+                <tbody id="tbl">
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

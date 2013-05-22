@@ -3,7 +3,7 @@
 
     var appView = Windows.UI.ViewManagement.ApplicationView;
     var nav = WinJS.Navigation;
-
+    var util = Util.Element;
     WinJS.Namespace.define("Application", {
         PageControlNavigator: WinJS.Class.define(
             // Define the constructor function for the PageControlNavigator.
@@ -105,6 +105,7 @@
                         }
                         this._element.appendChild(newElement);
                         this._element.removeChild(oldElement);
+                        that._resetAnchor();
                         oldElement.innerText = "";
                         this._updateBackButton();
                         parentedComplete();
@@ -113,7 +114,27 @@
 
                     args.detail.setPromise(this._lastNavigationPromise);
                 },
+                /// <summary>重置节点下的链接行为</summary>
+                /// <summary>修改链接的行为，不以shceme(http,https,...)起始的链接,链接到系统内部的页面(/pages下面对应的页面)</summary>
+                /// <param name="element" type="HTMLElement">根节点</param>
+                _resetAnchor: (function () {
+                    var regx = /ms-appx:\/\//;
+                    var eventHandler = function (event) {
+                        var a = util.findAncestor(event.target, function (node) {
+                            return node.tagName == "A";
+                        });
+                        if (!a || !a.href || /^javascript:/.test(a.href) || a.href == "#" || a.target || a.getAttribute('navable') === 'false')
+                            return;
 
+                        if (regx.test(a.href)) {
+                            event.preventDefault();
+                            nav.navigate(a.pathname + a.search + a.hash);
+                        }
+                    };
+                    return function () {
+                        this.pageElement.addEventListener("click", eventHandler, false);
+                    };
+                })(),
                 // Responds to resize events and call the updateLayout function
                 // on the currently loaded page.
                 _resized: function (args) {

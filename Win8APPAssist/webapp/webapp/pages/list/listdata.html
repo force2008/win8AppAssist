@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/index.css" rel="stylesheet" />
+    <link href="/pages/home/home.css" rel="stylesheet" />
+    <script src="/js/data/sqlite3.js"></script>
+    <script src="/js/data/sqlite_ext.js"></script>
+    <script src="/js/event.js"></script>
+    <script src="/pages/list/listdata.js"></script>
+</head>
+<body>
+
+    <div class="fragment homepage">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Welcome to NavAPP!</span>
+            </h1>
+        </header>
+        <section aria-label="Main content" role="main">
+            <button id="changeData">修改数据</button>
+            <button id="changeperson">人员数据</button>
+            <div id="templateDiv" data-win-control="WinJS.Binding.Template">
+                <div class="templateItem" data-win-bind="style.background: color">
+                    <ol>
+                        <li><span>Name :</span><span data-win-bind="textContent: name"></span></li>
+                        <li><span>Birthday:</span><span data-win-bind="textContent: birthday"></span></li>
+                        <li><span>Pet's name: </span><span data-win-bind="textContent: petname"></span></li>
+                        <li><span>Dessert: </span><span data-win-bind="textContent: dessert"></span></li>
+                        <li><span>list: </span><span data-win-bind="textContent: dessert" ></span></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div id="templateControlRenderTarget"></div>
+            <div id="objectBinding">
+                Welcome
+                <span id="bindableSpan"></span>
+            </div>
+            <fieldset id="templateControlObject">
+                <legend>Pick a name:</legend>
+                <select id="templateControlObjectSelector">
+                    <option value="0">Show one</option>
+                    <option value="1">Show two</option>
+                    <option value="2">Show three</option>
+                </select>
+            </fieldset>
+        </section>
+    </div>
+</body>
+</html>

@@ -57,15 +57,16 @@
 
 
             var index = 1;
-            setInterval(function () {
-                if (index < 5)
-                    this.toast('Image', index);
-                else
-                    this.toast('', index-4);
-                index++;
-                if (index > 8)
-                    index = 1;
-            }.bind(this),3000)
+            //setInterval(function () {
+            //    if (index < 5)
+            //        this.toast('Image', index);
+            //    else
+            //        this.toast('', index-4);
+            //    index++;
+            //    if (index > 8)
+            //        index = 1;
+            //}.bind(this), 3000)
+
         },
         toast: function (type, index) {
             var launch = { "type": "toast" };

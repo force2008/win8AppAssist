@@ -61,28 +61,55 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="js\base.js" />
+    <Content Include="js\event.js" />
     <Content Include="js\index.js" />
+    <Content Include="js\jst.js" />
+    <Content Include="js\list.js" />
     <Content Include="js\logging.js" />
+    <Content Include="js\module.js" />
     <Content Include="js\navigator.js" />
     <Content Include="js\push.js" />
+    <Content Include="js\class.js" />
     <Content Include="js\toast.js" />
     <Content Include="js\util.js" />
+    <Content Include="js\widget.js" />
+    <Content Include="pages\cache\cache.css" />
+    <Content Include="pages\cache\cache.html" />
+    <Content Include="pages\cache\cache.js" />
+    <Content Include="pages\cache\cachetest.js" />
+    <Content Include="pages\jst\jst.css" />
+    <Content Include="pages\jst\jst.html" />
+    <Content Include="pages\jst\jst.js" />
+    <Content Include="pages\list\bindlist.html" />
+    <Content Include="pages\list\bindlist.js" />
+    <Content Include="pages\list\list.css" />
+    <Content Include="pages\list\list.html" />
+    <Content Include="pages\list\list.js" />
+    <Content Include="pages\list\listdata.html" />
+    <Content Include="pages\list\listdata.js" />
+    <Content Include="pages\list\listview.html" />
+    <Content Include="pages\list\listview.js" />
     <Content Include="pages\search\search.css" />
     <Content Include="pages\search\search.html" />
     <Content Include="pages\search\search.js" />
+    <Content Include="pages\sqlit3\sqlit3.css" />
+    <Content Include="pages\sqlit3\sqlit3.html" />
+    <Content Include="pages\sqlit3\sqlit3.js" />
     <Content Include="pages\toast\toast.css" />
     <Content Include="pages\toast\toast.html" />
     <Content Include="pages\toast\toast.js" />
-    <None Include="Package.StoreAssociation.xml" />
-    <None Include="LibDemo_StoreKey.pfx" />
     <Content Include="pages\home\home.css" />
     <Content Include="pages\home\home.html" />
     <Content Include="pages\home\home.js" />
     <Content Include="index.html" />
-    <None Include="LibDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\native\native.vcxproj" />
+    <ProjectReference Include="..\native\src\NotificationsExtensions\NotificationsExtensions.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment
