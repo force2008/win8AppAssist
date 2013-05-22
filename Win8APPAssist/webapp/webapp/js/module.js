@@ -610,11 +610,15 @@
     /// onafterload           列表加载完回调
     /// onbeforepullrefresh   向前取数据加载前回调
     /// onafterpullrefresh    向前取数据加载后回调
+    /// onbeforeitemsdelete    删除项成功回调
     /// onafteritemsdelete    删除项成功回调
     /// onbeforeitemadd       开始添加项回调
     /// onafteritemadd        添加项回调
     /// onafteritemload       取到具体项回调
     /// onlistempty           列表为空回调
+    /// unshiftItemAnimation  头部添加列表项动画回调
+    /// appendItemAnimation   列表添加时是动画回调
+    /// removeItemAnimation   列表项移除时动画回调
     /// CacheClass Nej.Util.ListCache继承而来的缓存类，实现服务器端数据的各种操作，详见Nej.Util.ListCache需要的功能实现
     ///</param>
 
@@ -626,6 +630,8 @@
         this.batEvent(_options)
         this._itemCache = [];
         this.bindDataCache = [];
+        //this.appendItemAnimation = _options.appendItemAnimation || false;
+        //this.removeItemAnimation = _options.removeItemAnimation || false;
         this._cache = new _options.CacheClass({
             id: _options.id,
             onlistload: this._onListLoad.bind(this),
@@ -680,6 +686,7 @@
             this.bindDataCache.push(data);
             var item = this._itemControl.render(data).then(function (result) {
                 this.dispatchEvent('onitemeventprocess', { elm: result, data: data });
+                this.dispatchEvent('appendItemAnimation', result);
                 this._parent.appendChild(result);
                 this._itemCache.push(result);
             }.bind(this));
@@ -690,6 +697,7 @@
             this.bindDataCache.unshift(data);
             var item = this._itemControl.render(data).then(function (result) {
                 this.dispatchEvent('onitemeventprocess', { elm: result, data: data });
+                this.dispatchEvent('unshiftItemAnimation', result);
                 this._parent.insertBefore(result, this._parent.firstChild);
                 this._itemCache.unshift(result);
             }.bind(this));
@@ -716,6 +724,7 @@
         /// <summary>批量删除项</summary>
         /// <param name="_options" type="Object">删除信息 key, data(id数据)</param>
         deleteItems: function (_options) {
+            this.dispatchEvent('onbeforeitemsdelete');
             this._cache.deleteItems(_options);
         },
         /// <summary>删除项回调</summary>
@@ -727,6 +736,7 @@
                     return _item.id == _ids[i];
                 })
                 if (_index != -1) {
+                    this.dispatchEvent('appendItemAnimation', this._itemCache[_index]);
                     this._itemCache[_index].parentNode.removeChild(this._itemCache[_index]);
                     this.bindDataCache.splice(_index, 1);
                     this._itemCache.splice(_index, 1);

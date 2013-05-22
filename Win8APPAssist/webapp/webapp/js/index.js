@@ -124,10 +124,9 @@
             // 初始化log,程序已经初始化过日志，不可再进行初使化，所以要进行是否进行初始化的逻辑处理
             return Util.Log.LoggerManager.initLoggerAsy('log.txt', logLevel);
         }).then(function (logging) {
-            log.info('nav location:' + nav.location);
-            log.info(Util.Package.getVersion());
-            console.log(Util.Package.getVersion());
-            console.log(Util.Package.getInstalledLocation());
+            log.info('version:'+Util.Installation.Package.getVersion());
+            console.log('version:'+Util.Installation.Package.getVersion());
+            log.info('tInstalledLocation:' + Util.Installation.Package.getInstalledLocation());
             if (args.detail.arguments) {
                 var params = JSON.parse(args.detail.arguments);
                 if (params && params.type) {

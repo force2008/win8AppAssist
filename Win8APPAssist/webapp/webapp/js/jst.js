@@ -3,7 +3,7 @@
     "use strict";
 
     Function.prototype.aop = function (_before, _after) {
-        var f = Util.F,
+        var f = Util.f,
             _after = _after || f,
             _before = _before || f,
             _handler = this;
@@ -319,7 +319,7 @@
             }
         },
         parseTemplate: function (_element) {
-            _element = Util.getElement(_element);
+            _element = Util.Element.getElement(_element);
             if (!!_element) {
                 var _list = _element.tagName == 'TEXTAREA' ? [_element]
                           : _element.getElementsByTagName('textarea');
@@ -334,7 +334,7 @@
         /// <returns type="String" value="JST模板在缓存中的序列号"/>
         addHtmlTemplate: function (_content, _keep) {
             if (!_content) return '';
-            var _sn, _element = Util.getElement(_content);
+            var _sn, _element = Util.Element.getElement(_content);
             if (!!_element) {
                 _sn = _element.id;
                 _content = _element.value || _element.innerText;
@@ -378,7 +378,7 @@
         /// <param name="_data" type="Object">模板数据</param>
         /// <param name="_extent" type="Object">扩展接口</param>
         renderHtmlTemplate: function (_parent, _sn, _data, _extend) {
-            _parent = Util.getElement(_parent);
+            _parent = Util.Element.getElement(_parent);
             if (!_parent) return;
             _parent.innerHTML = this.getHtmlTemplate(
                                    _sn, _data, _extend);
@@ -402,7 +402,7 @@
             var _value = this.getTextTemplate(_key);
             if (!_value) return null;
             if (Util.isTypeOf(_value,'String')) {
-                _value = Util.html2node(_value);
+                _value = Util.Element.html2node(_value);
                 this.addTextTemplate(_key, _value);
             }
             return _value.cloneNode(!0);
@@ -412,7 +412,7 @@
         /// <param name="_key" type="String">模板节点id</param>
         addNodeTemplate: function (_element, _key) {
             _key = _key || Util.randNumberString();
-            _element = Util.getElement(_element) || _element;
+            _element = Util.Element.getElement(_element) || _element;
             this.addTextTemplate(_skey + _key, _element);
             return _key;
         },

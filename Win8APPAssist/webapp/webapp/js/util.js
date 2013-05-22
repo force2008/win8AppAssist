@@ -28,16 +28,15 @@
             },
             /// <summary>注销网络状态回调事件</summary>
             unreisterCallback: function () {
-                this.networkInfo.removeEventListener("networkstatuschanged", this.onNetworkChanged.bind(this));
+                this.networkInfo.removeEventListener("networkstatuschanged", this._onNetworkChanged.bind(this));
             },
             /// <summary>网络状态改变时回调</summary>
-            onNetworkChanged: function () {
+            _onNetworkChanged: function () {
                 var connectPro = this.networkInfo.getInternetConnectionProfile();
                 if (!!connectPro && connectPro.getNetworkConnectivityLevel() == Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess) {
                     this.isConnected = true;
                 }
-                else
-                {
+                else {
                     this.isConnected = false;
                 }
                 this.callback.forEach(function (item) {
@@ -46,18 +45,25 @@
             },
             /// <summary>获取当前网络状态</summary>
             isCurrentConnected: function () {
-                var connectPro = !!this.networkInfo.getInternetConnectionProfile();
-                if (connectPro != null) {
-                    return (connectPro.getNetworkConnectivityLevel() == Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess)
-                }
-                else {
-                    return false;
-                }
+                //var connectPro = !!this.networkInfo.getInternetConnectionProfile();
+                //if (connectPro != null) {
+                //    return (connectPro.getNetworkConnectivityLevel() == Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess)
+                //}
+                //else {
+                //    return false;
+                //}
+                return this.isConnected;
             },
             setState: function () {
-                this.networkInfo.addEventListener("networkstatuschanged", this.onNetworkChanged.bind(this));
+                this.networkInfo.addEventListener("networkstatuschanged", this._onNetworkChanged.bind(this));
 
-                this.isConnected = !!this.networkInfo.getInternetConnectionProfile();
+                var connectPro = this.networkInfo.getInternetConnectionProfile();
+                if (!!connectPro && connectPro.getNetworkConnectivityLevel() == Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess) {
+                    this.isConnected = true;
+                }
+                else {
+                    this.isConnected = false;
+                }
             }
         }
     });
@@ -65,6 +71,30 @@
     (function () {
         Util.Network.NetworkStateManager.setState();
     }())
+
+    /// <summary>获取元素样式</summary>
+    /// <param name="element" type="HTMLElement">元素</param>
+    /// <param name="name" type="String">样式名称</param>
+    /// <returns type="String" />
+    function getStyle(element, name) {
+        var current = window.getComputedStyle(element);
+        return current && current[name];
+    }
+    /// <summary>设置元素样式</summary>
+    /// <param name="element" type="HTMLElement">元素</param>
+    /// <param name="name" type="String|Object">样式名称|map（样式的名值对）</param>
+    /// <param name="value" type="String">样式值, 可选参数</param>
+    function setStyle(element, name, value) {
+        if (!element || !element.style) return;
+        if (typeof name === 'object') {
+            for (var p in name) {
+                if (name.hasOwnProperty(p)) setStyle(element, p, name[p]);
+            }
+        } else {
+            element.style[name] = value;
+        }
+    }
+
     WinJS.Namespace.define("Util.Element", {
         /// <summary>查找符合条件的第一个祖先节点</summary>
         /// <param name="node" type="Node">源节点</param>
@@ -85,12 +115,6 @@
         /// <param name="className" type="String">class</param>
         hasClassName: function (node, className) {
             return (node.className.search('(\\s|^)(?:' + className.replace(/\s+/g, '|') + ')(?=\\s|$)') >= 0);
-        },
-        /// <summary>查找指定ID的节点</summary>
-        /// <param name="id" type="String">id</param>
-        /// <returns type="Node"/>
-        id: function (id) {
-            return document.getElementById(id);
         },
         /// <summary>获取浮动元素的4个点的位置,确定浮动元素的位置</summary>
         /// <param name="element" type="Node">源节点</param>
@@ -156,9 +180,45 @@
             return value != undefined || typeof name === 'object' ?
                 setStyle(element, name, value) :
                 getStyle(element, name);
-        }
+        },
+        empty: function (_elm) {
+            WinJS.Utilities.empty(_elm);
+        },
+        /// <summary>获取节点</summary>
+        /// <param name="element" type="String||element">节点或id为字符串或数据的</param>
+        getElement: function (element) {
+            if (!Util.isTypeOf(element, 'String') &&
+                !Util.isTypeOf(element, 'Number'))
+                return element;
+            return document.getElementById(element);
+        },
+        /// <summary>将html字符串变成node</summary>
+
+        html2node: function (_html) {
+            var _div = document.createElement('div');
+            _div.innerHTML = window.toStaticHTML(_html);
+            var _list = _div.children;
+            return _list.length > 1 ? _div : _list[0];
+        },
+        /// <summary>暂时移除节点</summary>
+        removeByEC: function (_elm) {
+            _cache.appendChild(_elm);
+        },
+        /// <summary>生成节点</summary>
+        /// <param name="_tag" type="String">标签名</param>
+        /// <param name="_class" type="String">样式名</param>
+        /// <param name="_parent" type="Element">父节点</param>
+        createElement: function (_tag, _class, _parent) {
+            if (!_tag) return;
+            var _elm = document.createElement(_tag);
+            if (!!_class)
+                _elm.class = _class;
+            if (!!_parent)
+                _parent.appendChild(_elm)
+            return _elm
+        },
     })
-    WinJS.Namespace.define("Util", {
+    WinJS.Namespace.define("Util.Installation", {
         /// <summary>安装包信息</summary>
         Package: {
             CurrentPackage: Windows.ApplicationModel.Package.current,
@@ -173,7 +233,10 @@
                 return this.CurrentPackage.installedLocation.path;
             }
 
-        },
+        }
+    });
+    WinJS.Namespace.define("Util", {
+
         /// <summary>MD5加密</summary>
         /// <param name="str" type="String">加密字符串</param>
         MD5: function (str) {
@@ -186,7 +249,7 @@
         /// <summary>解析location</summary>
         /// <param name="url" type="String">地址</param>
         /// <returns type="Object" />
-        /// case 0: NM.Util.parseLocation("http://www.163.com/news?a=12&b=3#c=mm&d=nn") --> {
+        /// case 0: Util.parseLocation("http://www.163.com/news?a=12&b=3#c=mm&d=nn") --> {
         ///     href: "http://www.163.com/news?a=12&b=3#c=mm&d=nn",
         ///     pathname:"http://www.163.com/news", searh:"a=12&b=3", hash: "c=mm&d=nn"}
         parseURL: function (url) {
@@ -202,7 +265,7 @@
         /// <summary>将查询字符串转换成对象</summary>
         /// <param name="query" type="String">查询字符串</param>
         /// <returns type="Object"/>
-        /// case: NM.Util.query2object("a=123&b=mm") --> {a:"123", b:"mm"}
+        /// case: Util.query2object("a=123&b=mm") --> {a:"123", b:"mm"}
         query2object: function (query) {
             if (typeof query != "string" || !query.length) return null;
             var units = query.split("&");
@@ -213,22 +276,6 @@
             });
             return queryObject;
         },
-        F: function () { return !1; },
-        /// <summary>将数组根据指定键值转换成对象</summary>
-        /// <param name="arr" type="Array">数组</param>
-        /// <param name="key" type="String">键值，可选参数，默认为"id"</param>
-        /// <returns type="Object" />
-        array2object: function (arr, key) {
-            if (!arr || !arr.forEach || !arr.length) return null;
-            var result = {};
-            key = key || "id";
-            arr.forEach(function (item) {
-                if (item && item[key]) {
-                    result[item[key]] = item;
-                }
-            });
-            return result;
-        },
         /// <summary>判断类型</summary>
         /// <param name="data" type="Object">具体数据</param>
         /// <param name="type" type="String">类型（Function | String | Date object）</param>
@@ -237,22 +284,7 @@
             if (data === undefined) return type == 'undefined';
             return Object.prototype.toString.call(data) == '[object ' + type + ']';
         },
-        /// <summary>获取节点</summary>
-        /// <param name="element" type="String||element">节点或id为字符串或数据的</param>
-        getElement:function(element){
-            if (!this.isTypeOf(element,'String')&&
-                !this.isTypeOf(element,'Number'))
-                return element;
-            return document.getElementById(element);
-        },
-        /// <summary>将html字符串变成node</summary>
 
-        html2node: function (_html) {
-            var _div = document.createElement('div');
-            _div.innerHTML = window.toStaticHTML(_html);
-            var _list = _div.children;
-            return _list.length > 1 ? _div : _list[0];
-        },
         /// <summary>返回指定项在数组的index</summary>
         /// <param name="list" type="Array">数组</param>
         /// <param name="item" type="item | Function">查询项</param>
@@ -275,8 +307,11 @@
                 callback(list[i], i, list);
             }
         },
+        /// <summary>空函数</summary>
         f: function () { return !1; },
-        r:[],
+        /// <summary>字数组</summary>
+        r: [],
+        /// <summary>往localSetting添加键值数据</summary>
         setData: function (key, data) {
             this.createContainer('app-data');
             var composite = new Windows.Storage.ApplicationDataCompositeValue();
@@ -291,6 +326,7 @@
             }
             this.localSettings.containers.lookup('app-data').values[key] = composite;
         },
+        /// <summary>从localSetting获取键值数据</summary>
         getData: function (key) {
             if (this.localSettings.containers.hasKey('app-data')) {
                 return !!this.localSettings.containers.lookup('app-data').values[key] ?
@@ -395,11 +431,11 @@
         /// <param name="to" type="Object">目的对象</param>
         /// <param name="from" type="Object">源对象</param>
         /// <returns type="Object">目的对象</returns>
-        mix: function (_object, _config,_filter) {
+        mix: function (_object, _config, _filter) {
             if (!_object || !_config)
                 return _object;
             _object = _object || {};
-            _filter = _filter || Util.F;
+            _filter = _filter || Util.f;
             for (var x in _config)
                 if (!_filter(_config[x], x))
                     _object[x] = _config[x];
@@ -408,13 +444,13 @@
         },
         /// <summary>生成伪随机字符串</summary>
         /// <param name="length" type="Number">长度</param>
-        randString : (function(){
+        randString: (function () {
             var _chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-            return function(length){
-                length = length||10;
+            return function (length) {
+                length = length || 10;
                 var _result = [];
-                for(var i=0,_rnum;i<length;++i){
-                    _rnum = Math.floor(Math.random()*_chars.length);
+                for (var i = 0, _rnum; i < length; ++i) {
+                    _rnum = Math.floor(Math.random() * _chars.length);
                     _result.push(_chars.charAt(_rnum));
                 }
                 return _result.join('');
@@ -422,24 +458,13 @@
         })(),
         /// <summary>生成伪随机数</summary>
         /// <param name="length" type="Number">长度</param>
-        randNumberString: function(length){
-            length = Math.max(0,Math.min(length||8,30));
+        randNumberString: function (length) {
+            length = Math.max(0, Math.min(length || 8, 30));
             var _min = Math.pow(10, length - 1), _max = _min * 10;
             var number = Math.floor(Math.random() * (_max - _min) + _min)
             return number.toString();
         },
-        removeByEC: function (_elm) {
-            _cache.appendChild(_elm);
-        },
-        createElement:function(_tag,_class,_parent){
-            if(!_tag)return;
-            var _elm = document.createElement(_tag);
-            if (!!_class)
-                _elm.class = _class;
-            if(!!_parent)
-                _parent.appendChild(_elm)
-            return _elm
-        },
+        
         /// <summary>用户数据存储对象</summary>
         localSettings: Windows.Storage.ApplicationData.current.localSettings,
         createContainer: function (key) {
@@ -568,116 +593,116 @@
         }
     })
     WinJS.Namespace.define("Util.Element", {
-            /// <summary>鼠标模拟手势操作的x,y方向的临界值，可以对其进行全设置，以增加灵活性</summary>
-            SWIPETHRESHOLDX: 15,
-            SWIPETHRESHOLDY: 15,
-            addEvent: function (_elm, _type, _handler, _isCapture) {
-                //swipe right,swipe left,swipe up,swipe down
-                if (_type.indexOf('swipe') == 0) {
-                    var swipeDirection = _type.substr(5).toLowerCase();
-                    var swipe = _elm.getAttribute('swipeDirection');
-                    if (!!swipe) {
-                        swipe += +' '+swipeDirection;
-                        _elm.setAttribute('swipeDirection', swipe);
-                        _elm.addEventListener(_type, _handler, false);
-                        return;
-                    }
-                    _elm.setAttribute('swipeDirection', swipeDirection);
-                    _elm.addEventListener('MSPointerDown', this._processDown.bind(this, _elm), false);
-                    _elm.addEventListener('MSPointerMove', this._processMove.bind(this, _elm), false);
-                    //list.addEventListener('mousemove', this._processMove.bind(this), false);
-                    _elm.addEventListener('MSPointerUp', this._processUp.bind(this, _elm), false);
-                    _elm.addEventListener('MSPointerCancel', this._processUp.bind(this, _elm), false);
-                    _elm.addEventListener(_type, _handler, false);
-                }
-                else {
-                    _elm.addEventListener(_type, _handler, _isCapture);
-                }
-            },
-            _processDown: function ( _elm, _event) {
-                this._startPointX = _event.currentPoint.position.x;
-                this._startPointY = _event.currentPoint.position.y;
-
-                var target = Util.Element.findAncestor(_event.target, function (target) {
-                    return target === _elm
-                });
-
-                if (!target)
-                    return;
-                this.isSwipe = true;
-                this.isClick = true;
-                this.swipeDone = false;
-            },
-            _processMove: function (_elm,_event) {
-                if (!this.isSwipe || this.swipeDone)
-                    return;
+        /// <summary>鼠标模拟手势操作的x,y方向的临界值，可以对其进行全设置，以增加灵活性</summary>
+        SWIPETHRESHOLDX: 15,
+        SWIPETHRESHOLDY: 15,
+        addEvent: function (_elm, _type, _handler, _isCapture) {
+            //swipe right,swipe left,swipe up,swipe down
+            if (_type.indexOf('swipe') == 0) {
+                var swipeDirection = _type.substr(5).toLowerCase();
                 var swipe = _elm.getAttribute('swipeDirection');
-                this._endPointX = _event.x;
-                this._endPointY = _event.y;
-                
-                var target = Util.Element.findAncestor(_event.target, function (target) {
-                    return target === _elm;
-                });
+                if (!!swipe) {
+                    swipe += +' ' + swipeDirection;
+                    _elm.setAttribute('swipeDirection', swipe);
+                    _elm.addEventListener(_type, _handler, false);
+                    return;
+                }
+                _elm.setAttribute('swipeDirection', swipeDirection);
+                _elm.addEventListener('MSPointerDown', this._processDown.bind(this, _elm), false);
+                _elm.addEventListener('MSPointerMove', this._processMove.bind(this, _elm), false);
+                //list.addEventListener('mousemove', this._processMove.bind(this), false);
+                _elm.addEventListener('MSPointerUp', this._processUp.bind(this, _elm), false);
+                _elm.addEventListener('MSPointerCancel', this._processUp.bind(this, _elm), false);
+                _elm.addEventListener(_type, _handler, false);
+            }
+            else {
+                _elm.addEventListener(_type, _handler, _isCapture);
+            }
+        },
+        _processDown: function (_elm, _event) {
+            this._startPointX = _event.currentPoint.position.x;
+            this._startPointY = _event.currentPoint.position.y;
 
-                if (!target)
-                    return;
+            var target = Util.Element.findAncestor(_event.target, function (target) {
+                return target === _elm
+            });
 
-                //swipe right
-                if ((this._endPointX - this._startPointX >= this.SWIPETHRESHOLDX) && swipe.indexOf('right')!=-1) {
-                    var evt = document.createEvent("MouseEvents");
-                    evt.initMouseEvent("swipeRight", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    target.dispatchEvent(evt);
-                    this.isSwipe = true;
-                    this.isClick = false;
-                    this.swipeDone = true;
-                    return;
-                }
+            if (!target)
+                return;
+            this.isSwipe = true;
+            this.isClick = true;
+            this.swipeDone = false;
+        },
+        _processMove: function (_elm, _event) {
+            if (!this.isSwipe || this.swipeDone)
+                return;
+            var swipe = _elm.getAttribute('swipeDirection');
+            this._endPointX = _event.x;
+            this._endPointY = _event.y;
 
-                //swipe down
-                if ((this._endPointY - this._startPointY >= this.SWIPETHRESHOLDY) && swipe.indexOf('down') != -1) {
-                    var evt = document.createEvent("MouseEvents");
-                    evt.initMouseEvent("swipeDown", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    target.dispatchEvent(evt);
-                    this.isSwipe = true;
-                    this.isClick = false;
-                    this.swipeDone = true;
-                    return;
-                }
-                //swipe up
-                if ((this._startPointY - this._endPointY >= this.SWIPETHRESHOLDY) && swipe.indexOf('up') != -1) {
-                    var evt = document.createEvent("MouseEvents");
-                    evt.initMouseEvent("swipeUp", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    target.dispatchEvent(evt);
-                    this.isSwipe = true;
-                    this.isClick = false;
-                    this.swipeDone = true;
-                    return;
-                }
-                //swipe left
-                if ((this._startPointX - this._endPointX >= this.SWIPETHRESHOLDX) &&  swipe.indexOf('left')!=-1) {
-                    var evt = document.createEvent("MouseEvents");
-                    evt.initMouseEvent("swipeLeft", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    target.dispatchEvent(evt);
-                    this.isSwipe = true;
-                    this.isClick = false;
-                    this.swipeDone = true;
-                    return;
-                }
-            },
-            _processUp: function (_elm,_event) {
-                this._endPointX = _event.currentPoint.position.x;
-                this._endPointY = _event.currentPoint.position.y;
-                this.isSwipe = false;
-                this.swipeDone = false;
-                ////swipe right
-                if ((Math.abs(this._startPointX - this._endPointX) < this.SWIPETHRESHOLDX) && (Math.abs(this._startPointY - this._endPointY) < this.SWIPETHRESHOLDY)) {
-                    this.isClick = true;
-                    var evt = document.createEvent("MouseEvents");
-                    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    _elm.dispatchEvent(evt);
-                }
+            var target = Util.Element.findAncestor(_event.target, function (target) {
+                return target === _elm;
+            });
+
+            if (!target)
+                return;
+
+            //swipe right
+            if ((this._endPointX - this._startPointX >= this.SWIPETHRESHOLDX) && swipe.indexOf('right') != -1) {
+                var evt = document.createEvent("MouseEvents");
+                evt.initMouseEvent("swipeRight", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                target.dispatchEvent(evt);
+                this.isSwipe = true;
+                this.isClick = false;
+                this.swipeDone = true;
+                return;
             }
 
-        
+            //swipe down
+            if ((this._endPointY - this._startPointY >= this.SWIPETHRESHOLDY) && swipe.indexOf('down') != -1) {
+                var evt = document.createEvent("MouseEvents");
+                evt.initMouseEvent("swipeDown", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                target.dispatchEvent(evt);
+                this.isSwipe = true;
+                this.isClick = false;
+                this.swipeDone = true;
+                return;
+            }
+            //swipe up
+            if ((this._startPointY - this._endPointY >= this.SWIPETHRESHOLDY) && swipe.indexOf('up') != -1) {
+                var evt = document.createEvent("MouseEvents");
+                evt.initMouseEvent("swipeUp", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                target.dispatchEvent(evt);
+                this.isSwipe = true;
+                this.isClick = false;
+                this.swipeDone = true;
+                return;
+            }
+            //swipe left
+            if ((this._startPointX - this._endPointX >= this.SWIPETHRESHOLDX) && swipe.indexOf('left') != -1) {
+                var evt = document.createEvent("MouseEvents");
+                evt.initMouseEvent("swipeLeft", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                target.dispatchEvent(evt);
+                this.isSwipe = true;
+                this.isClick = false;
+                this.swipeDone = true;
+                return;
+            }
+        },
+        _processUp: function (_elm, _event) {
+            this._endPointX = _event.currentPoint.position.x;
+            this._endPointY = _event.currentPoint.position.y;
+            this.isSwipe = false;
+            this.swipeDone = false;
+            ////swipe right
+            if ((Math.abs(this._startPointX - this._endPointX) < this.SWIPETHRESHOLDX) && (Math.abs(this._startPointY - this._endPointY) < this.SWIPETHRESHOLDY)) {
+                this.isClick = true;
+                var evt = document.createEvent("MouseEvents");
+                evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                _elm.dispatchEvent(evt);
+            }
+        }
+
+
     })
 })();

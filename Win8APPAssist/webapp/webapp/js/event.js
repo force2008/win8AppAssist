@@ -1,4 +1,5 @@
 ﻿/// <summary>UI控件基类</summary>
+(function(){
 var Event = WinJS.Class.define(
     function (options) {
         /// <summary>缓存事件，和dom事件</summary>
@@ -190,7 +191,7 @@ var Abstract = WinJS.Class.derive(Event,
             this._doDelParentClass();
             delete this._parent;
             // clear body
-            Util.removeByEC(this._body);
+            Util.Element.removeByEC(this._body);
             WinJS.Utilities.removeClass(this._body, this._class)
             delete this._class;
         },
@@ -237,7 +238,7 @@ var Abstract = WinJS.Class.derive(Event,
             if (Util.isTypeOf(_parent,'Function')){
                 this._parent = _parent(this._body);
             }else{
-                this._parent = Util.getElement(_parent);
+                this._parent = Util.Element.getElement(_parent);
                 if (!!this._parent)
                     this._parent.appendChild(this._body);
             }
@@ -252,7 +253,7 @@ var Abstract = WinJS.Class.derive(Event,
         },
         /// <summary>隐藏控件</summary>
         hide : function(){
-            Util.removeByEC(this._body);
+            Util.Element.removeByEC(this._body);
         }
     },
     {
@@ -301,3 +302,9 @@ var Item = WinJS.Class.derive(Abstract,
         recycle: Abstract.recycle,
         getInstance: Abstract.getInstance
     });
+WinJS.Namespace.define('Nej.Util', {
+    Event: Event,
+    Abstract:Abstract,
+    Item: Item
+})
+}())

@@ -1,25 +1,29 @@
 ﻿
-"use strict"
-
-var PopupMenu = WinJS.Class.define(
-    /// <summary>初使化卡片对象popupMenu</summary>
-    function (_options) {
-        this.menu = new Windows.UI.Popups.PopupMenu();
-        for (var k in _options) {
-            if (Util.isTypeOf(_options[k], 'Function'))
-                this.menu.commands.append(new Windows.UI.Popups.UICommand(k, _options[k]))
-        }
-    },
-    {
-        /// <summary>卡片显示</summary>
-        /// <param name="_rect" type="Object">形行位置</param>
-        /// <param name="_placement" type="below|above|left|right">Description</param>
-        show: function (_rect, _placement) {
-            _placement = _placement || "above"
-            this.menu.showForSelectionAsync(_rect, Windows.UI.Popups.Placement[_placement]);
-        }
-    },
-    {})
+(function () {
+    "use strict"
+    var PopupMenu = WinJS.Class.define(
+        /// <summary>初使化卡片对象popupMenu</summary>
+        function (_options) {
+            this.menu = new Windows.UI.Popups.PopupMenu();
+            for (var k in _options) {
+                if (Util.isTypeOf(_options[k], 'Function'))
+                    this.menu.commands.append(new Windows.UI.Popups.UICommand(k, _options[k]))
+            }
+        },
+        {
+            /// <summary>卡片显示</summary>
+            /// <param name="_rect" type="Object">形行位置</param>
+            /// <param name="_placement" type="below|above|left|right">Description</param>
+            show: function (_rect, _placement) {
+                _placement = _placement || "above"
+                this.menu.showForSelectionAsync(_rect, Windows.UI.Popups.Placement[_placement]);
+            }
+        },
+        {})
+    WinJS.Namespace.define('Util', {
+        PopupMenu: PopupMenu
+    })
+}())
 ///appbar WinJS.UI.AppBar http://msdn.microsoft.com/en-us/library/windows/apps/br229670.aspx 
 /// <summary>应用中appbar的command会有不同的状态，可以设置多个appbar，或是通过改变appbar的onbeforeshow回调事件把command隐藏和显示状态</summary>
 
@@ -67,3 +71,6 @@ var PopupMenu = WinJS.Class.define(
 ///WinJS.UI.IListDataSource http://msdn.microsoft.com/en-us/library/windows/apps/br211786.aspx
 
 ///create UI http://msdn.microsoft.com/en-us/library/windows/apps/br211362.aspx
+
+/// WinJS.UI.Animation 节点动动参考 http://msdn.microsoft.com/en-us/library/windows/apps/br229780.aspx
+

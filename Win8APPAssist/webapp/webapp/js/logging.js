@@ -370,7 +370,7 @@
                 return WinJS.Promise.wrap().then(function () {
                     if (!!this.logging)
                         this.logging.closeImmediately();
-                    return Util.Log.Logging.initAsync('file.txt', logLevel || this.logLevel);
+                    return Util.Log.Logging.initAsync(this.file|'file.txt', logLevel || this.logLevel);
                 }.bind(this)).then(function (logging) {
                     this.logging = logging;
                     WinJS.Utilities.startLog({
