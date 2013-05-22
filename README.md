@@ -24,7 +24,7 @@ win8AppAssist
 #	应用导航
 可以在_cachePath对缓存的path进行配置，点击的url和当前的url一致，则刷新当前页面，当前页面模块配置reset方法对页面进行重置
 #	Nej 的jst模板模块
-win 8提供了动态的模板功能，但模板里不能进行逻辑操作，不能进行format操作等，jst提模了循环，逻辑等操作，只要添加了jst.js，可以和在nej编程一样进行jst的编写工作，jst的操作手册：
+(二) Nej 的jst模板模块，win 8提供了动态的模板功能，但模板里不能进行逻辑操作，不能进行format操作等，jst提供了循环，逻辑等操作，只要添加了jst.js，可以和在nej编程一样进行jst的编写工作，对于静态的，有逻辑的页面节点，可以用jst的方式把节点添加到页面上，jst的操作手册：
 http://nej.netease.com/course/topic/template/
 #	动态列表模块
 动态列表模块是开发人员从Nej.Util.ListCache继承，把相应的和服务器交互的函数填写完成，在页面上实例化Nej.Util.Module，在实例化Nej.Util.Module时传入相应的参数和回调函数，就可以完成列表的加载，并在把从服务器加载过来的数据缓存在内存里，Nej.Util.Module的参数如下：
