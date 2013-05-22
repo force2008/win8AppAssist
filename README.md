@@ -6,14 +6,14 @@ win8AppAssist
 win8AppAssist
 是一个辅助工具，用来辅助生成win 8 js app，通过该工具用户可以用来配置app应用所包含的依赖项目。
  
-##.	在 projectName输入app应用的名称，只能为英文和数据的组合，不能是中文。
-##.	Plug in里勾选你的app包含哪些功能，native是必须包含的依赖项目，如果js的开发受限于语言，可以用native进行扩展
-##.	SQLite3是本地关系数据库依赖工程,可以将数据存储在本地。
-##.	NotivationExtensions是app的toast和tile的封装工程，通过这个依赖，可以方便toast的调用。
-##.	JsonXmlConverter是提供了js到xml和xml到js对象之间的转换功能。
-##.	Wbxml可以将二进制的数据和xml格式间进行转换。
-##.	Path app项目路径
-##.	在ok后会在指定目录，把相关的依赖项目都添加进去，自动生成app工程，同时把相关的模块添加进新生成的工程里。
+* 在 projectName输入app应用的名称，只能为英文和数据的组合，不能是中文。
+* Plug in里勾选你的app包含哪些功能，native是必须包含的依赖项目，如果js的开发受限于语言，可以用native进行扩展
+* SQLite3是本地关系数据库依赖工程,可以将数据存储在本地。
+* NotivationExtensions是app的toast和tile的封装工程，通过这个依赖，可以方便toast的调用。
+* JsonXmlConverter是提供了js到xml和xml到js对象之间的转换功能。
+* Wbxml可以将二进制的数据和xml格式间进行转换。
+* Path app项目路径
+* 在ok后会在指定目录，把相关的依赖项目都添加进去，自动生成app工程，同时把相关的模块添加进新生成的工程里。
 
 
 # 应用设置
