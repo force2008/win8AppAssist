@@ -16,10 +16,10 @@ win8AppAssist
 ##.	在ok后会在指定目录，把相关的依赖项目都添加进去，自动生成app工程，同时把相关的模块添加进新生成的工程里。
 
 
-应用设置
+# 应用设置
 在package.appxmanifest里进行app的相关配置，新生成的app工程里把起始页设成了index.html，修改logo以适用相应的app， 这个url里有相关的应用配置指导http://msdn.microsoft.com/en-us/library/windows/apps/hh465346.aspx
 
-启动入口
+# 启动入口
 启动入口的主要脚本是js/index.js,在index.js里做了正常启动，search启动，分享启动这三种启动流程，其他的启动流程可以参考, http://msdn.microsoft.com/zh-cn/library/windows/apps/windows.applicationmodel.activation.activationkind.aspx 并有相关的启动方式的demo提供。在启动入口也配置了设置板面的项设置，超级按钮->设置后的对应用本身的设置的配置，同时也对日志进行的初使化，在后面的模块中日志。
 #	应用导航
 可以在_cachePath对缓存的path进行配置，点击的url和当前的url一致，则刷新当前页面，当前页面模块配置reset方法对页面进行重置
