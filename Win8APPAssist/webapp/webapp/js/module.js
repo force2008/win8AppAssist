@@ -2,13 +2,13 @@
 
     var _ckey = 'dat-' + (+new Date);
     /// <summary>缓存基类</summary>
-    var BaseCache = WinJS.Class.define(function (_options) {
-        this.__cache = this.constructor[_ckey];
-        if (!this.__cache) {
-            this.__cache = {};
+    var BaseCache = WinJS.Class.define(function BaseCacheConstructor(_options) {
+        this._cache = this.constructor[_ckey];
+        if (!this._cache) {
+            this._cache = {};
             // request loading information
-            this.__cache[_ckey + '-l'] = {};
-            this.constructor[_ckey] = this.__cache;
+            this._cache[_ckey + '-l'] = {};
+            this.constructor[_ckey] = this._cache;
         }
         this.batEvent(_options);
         this._reset(_options);
@@ -23,13 +23,13 @@
         /// <param name="_key" type="String">缓存键值</param>
         /// <returns type="Variable" >缓存数据</returns>
         _getDataInCache: function (_key) {
-            return this.__cache[_key];
+            return this._cache[_key];
         },
         /// <summary>数据存入缓存</summary>
         /// <param name="_key" type="String">缓存键值</param>
         /// <param name="_value" type="Variable">缓存数据</param>
         _setDataInCache: function (_key, _value) {
-            this.__cache[_key] = _value;
+            this._cache[_key] = _value;
         },
         /// <summary>带默认值取本地数据</summary>
         /// <param name="_key" type="String">键值</param>
@@ -47,10 +47,10 @@
         /// <param name="_key" type="String">缓存键值</param>
         _delDataInCache: function (_key) {
             if (_key != null) {
-                delete this.__cache[_key];
+                delete this._cache[_key];
                 return;
             }
-            for (var _ckey in this.__cache) {
+            for (var _ckey in this._cache) {
                 if (_key == (_ckey + '-l')) return;
                 this.__delDataInCache(_key);
             }
@@ -91,11 +91,11 @@
         /// <param name="_key" type="String">缓存键值</param>
         _delDataLocal: function (_key) {
             if (_key != null) {
-                delete this.__cache[_key];
+                delete this._cache[_key];
                 delete localStorage[_key];
                 return;
             }
-            for (var _ckey in this.__cache) {
+            for (var _ckey in this._cache) {
                 if (_key == (_ckey + '-l')) return;
                 this.__delDataLocal(_key);
             }
@@ -108,7 +108,7 @@
         /// <summary>请求回调</summary>
         /// <param name="_key" type="String">请求标识</param>
         _doCallbackRequest: function (_key) {
-            var _data = this.__cache[_ckey + '-l'],
+            var _data = this._cache[_ckey + '-l'],
                 _args = Util.r.slice.call(arguments, 1);
             for (var _k in _data[_key]) {
                 try {
@@ -127,10 +127,10 @@
         /// <returns type="Boolean" >是否已存在相同请求</returns>
         _doQueueRequest: function (_key, _callback) {
             _callback = _callback || _f;
-            var _list = this.__cache[_ckey + '-l'][_key];
+            var _list = this._cache[_ckey + '-l'][_key];
             if (!_list) {
                 _list = [_callback];
-                this.__cache[_ckey + '-l'][_key] = _list;
+                this._cache[_ckey + '-l'][_key] = _list;
                 return !1;
             }
             _list.push(_callback);
@@ -180,13 +180,13 @@
         _doSwapCache: function (_id) {
             var _cache;
             if (!!_id) {
-                _cache = this.__cache[_id];
+                _cache = this._cache[_id];
                 if (!_cache) {
                     _cache = {};
-                    this.__cache[_id] = _cache;
+                    this._cache[_id] = _cache;
                 }
             }
-            _cache = _cache || this.__cache;
+            _cache = _cache || this._cache;
             _cache.hash = _cache.hash || {};
             // hash    [Object] - item map by id
             // list    [Array]  - default list
@@ -606,7 +606,6 @@
     /// template              item模板和bindDefine的字段对印
     /// parent                列表的父节点
     /// onbeforeload          列表加载前回调，可以在回调添加加载状态
-    /// onitemeventprocess    item节点生成后处理一些相关的事件
     /// onafterload           列表加载完回调
     /// onbeforepullrefresh   向前取数据加载前回调
     /// onafterpullrefresh    向前取数据加载后回调
@@ -617,12 +616,36 @@
     /// onafteritemload       取到具体项回调
     /// onlistempty           列表为空回调
     /// unshiftItemAnimation  头部添加列表项动画回调
+    /// item                  模板参数{klazz:Item,options:{swipe:callback,template:itemTempate}}
     /// appendItemAnimation   列表添加时是动画回调
     /// removeItemAnimation   列表项移除时动画回调
     /// CacheClass Nej.Util.ListCache继承而来的缓存类，实现服务器端数据的各种操作，详见Nej.Util.ListCache需要的功能实现
     ///</param>
+    var Item = WinJS.Class.define(function ItemContructor(options) {
+        this._ItemTemplate = options.template.winControl;
+        this.batEvent(options);
+    }, {
+        renderAsyc: function (_binddata,_data) {
+            this._data = _data;
+            return WinJS.Promise.as(
+            this._ItemTemplate.render(_binddata).then(function (result) {
+                this.addEvent(result, _data);
+                return result;
+            }.bind(this)));
+        },
+        batEvent: function (_options) {
+            for (var _key in _options)
+                if (Util.isTypeOf(_options[_key], 'Function')) {
+                    this.addEventListener(_key, _options[_key]);
+                }
+        },
+        addEvnet: Util.f,
+    }, {
+    })
 
-    var Module = WinJS.Class.define(function (_options) {
+    WinJS.Class.mix(Item, WinJS.Utilities.eventMixin);
+
+    var Module = WinJS.Class.define(function ModuleConstructor(_options) {
         this.bindDefine = _options.bindDefine || {};
         this._defineItem = WinJS.Binding.define(_options.bindDefine);
         this._itemControl = _options.template.winControl;
@@ -630,8 +653,8 @@
         this.batEvent(_options)
         this._itemCache = [];
         this.bindDataCache = [];
-        //this.appendItemAnimation = _options.appendItemAnimation || false;
-        //this.removeItemAnimation = _options.removeItemAnimation || false;
+        this._itemClass = _options.item.klass;
+        this._itemOptions = _options.item.options;
         this._cache = new _options.CacheClass({
             id: _options.id,
             onlistload: this._onListLoad.bind(this),
@@ -662,12 +685,12 @@
             this._cache.getList(_options);
         },
 
-        
+
         getItem: function (_data) {
             this.dispatchEvent('onbeforeitemget');
             this._cache.getItem(_data);
         },
-        
+
         /// <summary>取列表成功回调</summary>
         _onListLoad: function (event) {
             var _ropt = event.detail;
@@ -681,26 +704,24 @@
             this.dispatchEvent('onafterload');
         },
         /// <summary>添加项</summary>
-        _appendItem: function (_item) {
-            var data = new this._defineItem(_item)
-            this.bindDataCache.push(data);
-            var item = this._itemControl.render(data).then(function (result) {
-                this.dispatchEvent('onitemeventprocess', { elm: result, data: data });
-                this.dispatchEvent('appendItemAnimation', result);
+        _appendItem: function (_data) {
+            var _binddata = new this._defineItem(_data)
+            this.bindDataCache.push(_binddata);
+            var item = new this._itemClass(this._itemOptions);
+            item.renderAsyc(_binddata, _data).then(function (result) {
                 this._parent.appendChild(result);
                 this._itemCache.push(result);
-            }.bind(this));
+            }.bind(this))
         },
         /// <summary>在头部插入项</summary>
-        _unshiftItem: function (_item) {
-            var data = new this._defineItem(_item)
-            this.bindDataCache.unshift(data);
-            var item = this._itemControl.render(data).then(function (result) {
-                this.dispatchEvent('onitemeventprocess', { elm: result, data: data });
-                this.dispatchEvent('unshiftItemAnimation', result);
+        _unshiftItem: function (_data) {
+            var _binddata = new this._defineItem(_data)
+            this.bindDataCache.unshift(_binddata);
+            var item = new this._itemClass(this._itemOptions);
+            item.renderAsyc(_binddata, _data).then(function (result) {
                 this._parent.insertBefore(result, this._parent.firstChild);
                 this._itemCache.unshift(result);
-            }.bind(this));
+            }.bind(this))
         },
         /// <summary>取具体项数据回调</summary>
         _onItemLoad: function (event) {
@@ -786,6 +807,7 @@
         BaseCache: BaseCache,
         BaseListCache: BaseListCache,
         ListCache: ListCache,
-        Module: Module
+        Module: Module,
+        Item: Item
     });
 }())

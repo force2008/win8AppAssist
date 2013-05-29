@@ -87,7 +87,7 @@
     }
     function onQuerySubmitted(event) {
         console.log(event.queryText.trim());
-        nav.navigate("/pages/search/search.html?queryText=" + event.queryText.trim());
+        nav.navigate("/test/search/search.html?queryText=" + event.queryText.trim());
     }
     function initSearchLaunch(args) {
         args.setPromise(WinJS.UI.processAll().then(function () {
@@ -97,8 +97,8 @@
             log.info('nav location:' + nav.location);
             var searchquery = args.detail.queryText.trim();
             log.info('searchquery:' + searchquery);
-            nav.navigate("/pages/search/search.html?queryText=" + searchquery);
-            //nav.navigate("/pages/search/search.html?queryText=" + args.queryText.trim());
+            nav.navigate("/test/search/search.html?queryText=" + searchquery);
+            //nav.navigate("/test/search/search.html?queryText=" + args.queryText.trim());
 
             //if (nav.location) {
             //    nav.history.current.initialPlaceholder = true;
@@ -132,7 +132,7 @@
                 if (params && params.type) {
                     switch (params.type) {
                         case 'toast':
-                            return nav.navigate('/pages/toast/toast.html?type=' + params.type);
+                            return nav.navigate('/test/toast/toast.html?type=' + params.type);
                     }
                 }
             } else {

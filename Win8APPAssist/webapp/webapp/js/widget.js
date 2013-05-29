@@ -3,7 +3,7 @@
     "use strict"
     var PopupMenu = WinJS.Class.define(
         /// <summary>初使化卡片对象popupMenu</summary>
-        function (_options) {
+        function PopupMenuConstructor(_options) {
             this.menu = new Windows.UI.Popups.PopupMenu();
             for (var k in _options) {
                 if (Util.isTypeOf(_options[k], 'Function'))
@@ -74,3 +74,4 @@
 
 /// WinJS.UI.Animation 节点动动参考 http://msdn.microsoft.com/en-us/library/windows/apps/br229780.aspx
 
+/// Tiles, badges, and notifications  http://msdn.microsoft.com/en-us/library/windows/apps/hh779725.aspx

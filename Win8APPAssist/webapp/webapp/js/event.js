@@ -1,7 +1,7 @@
 ﻿/// <summary>UI控件基类</summary>
 (function(){
 var Event = WinJS.Class.define(
-    function (options) {
+     function EventConstructor (options) {
         /// <summary>缓存事件，和dom事件</summary>
         this.events = {};
         this.events_dom = {};
@@ -119,7 +119,7 @@ var Event = WinJS.Class.define(
                         && this.pool.shift()
                         || new this(_options);
             // reset instance, flag first
-            _instance.__xxxx = !0;
+            _instance._xxxx = !0;
             _instance._reset(_options);
             return _instance;
         },
@@ -128,7 +128,7 @@ var Event = WinJS.Class.define(
         recycle: function (_instance) {
             if (!_instance) return null;
             if (!Util.isTypeOf(_instance, 'Array')) {
-                if (!_instance.__xxxx)
+                if (!_instance._xxxx)
                     return null;
                 if (!(_instance instanceof this)) {
                     // use constructor recycle instance
@@ -144,7 +144,7 @@ var Event = WinJS.Class.define(
                 if (!this.pool)
                     this.pool = [];
                 // void re-recycle, flag first
-                _instance.__xxxx = !1;
+                _instance._xxxx = !1;
                 _instance._destroy();
                 this.pool.push(_instance);
                 return null;
@@ -161,7 +161,7 @@ var Event = WinJS.Class.define(
             _options = _options || {};
             if (!this.instance) {
                 this.instance = new this(_options);
-                this.instance.__xxxx = !0;
+                this.instance._xxxx = !0;
                 this.instance._reset(_options);
             }
             return this.instance;
@@ -169,7 +169,7 @@ var Event = WinJS.Class.define(
     });
 /// <summary>UI控件基类</summary>
 var Abstract = WinJS.Class.derive(Event,
-    function (options) {
+    function AbstractConstructor(options) {
         Event.apply(this, arguments);
         //this.super(arguments);
         this._initXGui();
@@ -263,7 +263,7 @@ var Abstract = WinJS.Class.derive(Event,
         getInstance: Event.getInstance
     });
 var Item = WinJS.Class.derive(Abstract,
-    function (options) {
+    function ItemConstructor(options) {
         var _seed = +new Date;
         this._id = 'itm-' + (++_seed);
         Abstract.apply(this, arguments);

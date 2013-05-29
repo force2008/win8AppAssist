@@ -32,7 +32,7 @@
         error: 4,
     };
 
-    var Logging = WinJS.Class.define(function (filename, minLogLevel, truncatedSize) {
+    var Logging = WinJS.Class.define(function LoggingConstructor(filename, minLogLevel, truncatedSize) {
         this._closed = false;
         this.stream = undefined;
         this.rawStream = undefined; // for close
@@ -233,7 +233,7 @@
         }
     });
 
-    var HandyLogger = WinJS.Class.define(function () {
+    var HandyLogger = WinJS.Class.define(function HandyLoggerConstructor() {
         this.filename = '';
         this.triTupleRegex = /at ([^(]+) \(ms-appx:\/\/[^\/]+([^:]+):([^)]+)\)/;
         this.getTypeRegex = /\[object ([^\]]+)\]/;

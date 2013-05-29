@@ -7,7 +7,7 @@
     WinJS.Namespace.define("Application", {
         PageControlNavigator: WinJS.Class.define(
             // Define the constructor function for the PageControlNavigator.
-            function PageControlNavigator(element, options) {
+            function PageControlNavigatorConstructor(element, options) {
                 this._element = element || document.createElement("div");
                 this._element.appendChild(this._createPageElement());
 
